@@ -5,6 +5,7 @@ import NewsManagement from "./components/admin/NewsManagement.js";
 import CreateNews from "./components/admin/CreateNews.js";
 import CategoryManagement from "./components/admin/CategoryManagement.js";
 import Landing from './components/layout/Landing';
+import Login from './pages/users/Login';
 import Home from "./pages/users/Home";
 import Community from "./pages/users/Community";
 import Auth from "./pages/users/Auth";
@@ -35,7 +36,7 @@ function App() {
   //   }
   // }
 
-  if(window.location.pathname === '/login' || window.location.pathname === '/register'){
+  if(window.location.pathname === '/register'){
       window.location.href = '/';
       return null;
   }
@@ -58,10 +59,10 @@ function App() {
                             <Route path = "/admin/news/create" exact component = {CreateNews}/>
                             <Route path = "/admin/news/create/:id" exact component = {EditNews}/>
                             <Route path = "/admin/categories" exact component = {CategoryManagement}></Route>
-                            {/* <Route exact path='/' component={Landing}/> */}
+                            <Route exact path='/login' component={Login}/>
                             <Route exact path='/' component={Community}/>
-                            <Route exact path='/login' render={props => <Auth {...props} authRoute='login'/>} />
-                            <Route exact path='/register' render={props => <Auth {...props} authRoute='register'/>} />
+                            {/* <Route exact path='/login' render={props => <Auth {...props} authRoute='login'/>} />
+                            <Route exact path='/register' render={props => <Auth {...props} authRoute='register'/>} /> */}
                             <Route path = "/news/:id" exact component = {News}/>
                           </Switch>
                         </Router>
