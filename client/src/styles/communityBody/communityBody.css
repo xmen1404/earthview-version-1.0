@@ -1,8 +1,15 @@
 .community-body{
-    display: flex;
-    flex-direction: row;
-    padding: 0 4rem;
-    height: 90vh;
+    /* display: flex;
+    flex-direction: row; */
+
+    padding: 4rem 4rem;
+    /* height: 90vh; */
+
     /* padding-top: 5rem; */
     /* overflow-y: hidden; */
+}
+
+.fixed-background{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }

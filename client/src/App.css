@@ -2,7 +2,14 @@ body{
 	/* overflow: scroll; */
 	/* overflow-y: scroll; */
 	/* width: 100vw; */
-	overflow: hidden;
+	/* overflow: hidden; */
+	overscroll-behavior: contain;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 h1{

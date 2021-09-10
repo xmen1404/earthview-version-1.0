@@ -6,11 +6,12 @@ import Background from "../../assets/theme/Background.png";
 
 const CommunityBody = () => {
     return (
-        <div className = "community-body" 
-            style = {{background: `url(${Background}) no-repeat bottom center/cover`,}}
+        <div className = "community-body fixed-background" 
+            style = {{background: `url(${Background}) no-repeat bottom center/cover fixed`}}
         >
+            {/* <img className = "community-body-background"/> */}
             <CommunityPosts></CommunityPosts>
-            <CommunitySubMenu></CommunitySubMenu>
+            {/* <CommunitySubMenu></CommunitySubMenu> */}
         </div>
     )
 }
