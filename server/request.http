@@ -1,0 +1,182 @@
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Pam",
+    "password": "123456"
+}
+
+###
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Pam",
+    "password": "123456"
+}
+
+###
+
+POST http://localhost:5000/admin 
+Content-Type: application/json
+
+{
+    "username": "Pam",
+    "password": "123456",
+    "role": "Admin"
+}
+
+###
+
+POST http://localhost:5000/post 
+Content-Type: application/json
+
+{
+    "username": "Pam",
+    "password": "123456",
+    "role": "Contributor"
+}
+
+###
+
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTE4ZGJlOWZjMDVjODU5MTBkMDFlZGMiLCJpYXQiOjE2MjkyMDg4NzMsImV4cCI6MTYyOTgxMzY3M30.nHcwk-XoE5ajbcbhm3RtRHS1SnB-mixFCk1qsxTWvVg
+
+{
+    "title": "post 1",
+    "content": "content 1",
+    "description": "descreiption 1",
+    "backgroundUrl": "https://cdn.pixabay.com/photo/2015/03/26/09/47/sky-690293__340.jpg"
+}
+
+###
+
+GET http://localhost:5000/api/posts
+
+
+###
+
+PUT http://localhost:5000/api/posts/60aa378ce69bdb7fe8400422
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+{
+    "title": "new title",
+    "description": "new desc",
+    "url": "google.com",
+    "status": "LEARNING"
+}
+
+###
+
+DELETE http://localhost:5000/api/posts/60aa378ce69bdb7fe8400422
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+
+###
+POST http://localhost:5000/api/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+{
+    "name": "cate8",
+    "description": "testing"
+}
+
+
+###
+GET http://localhost:5000/api/categories
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+###
+DELETE http://localhost:5000/api/categories/60d351f74095bc4c84702140
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+###
+POST http://localhost:5000/api/news
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+{
+    "category": "60d351f74095bc4c84702140",
+    "title": "title 2",
+    "description": "description 2", 
+    "content": "open body end"
+}
+
+###
+GET http://localhost:5000/api/news
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+###
+GET http://localhost:5000/api/news/60def40607a75dadcce4400f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+###
+POST http://localhost:5000/api/types
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+{
+    "name": "highlighted"
+}
+
+
+###
+GET http://localhost:5000/api/types
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+###
+GET http://localhost:5000/api/series
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGFhMzc3M2U2OWJkYjdmZTg0MDA0MjEiLCJpYXQiOjE2MjE3NjgwNTd9.AH9MIN30O1BjKuNeT7PS_Pq32cfogQXPOLdaX3csyxA
+
+
+###
+POST http://localhost:5000/api/postLike/61251d0f7fc9d300902bff8a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTI0ODg1MzQxOTUwOTA0YTRjZDQ1OWIiLCJpYXQiOjE2Mjk4NzE0MjksImV4cCI6MTYzMDQ3NjIyOX0.XJ80CoBs4S1AEsoPBWFS5m_ZFPD8uV-X1wVwIEGT9Vc
+
+###
+GET http://localhost:5000/api/postLike/61251d0f7fc9d300902bff8a
+
+
+###
+GET http://localhost:5000/api/postLike/check/61251d0f7fc9d300902bff8a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTI0ODg1MzQxOTUwOTA0YTRjZDQ1OWIiLCJpYXQiOjE2Mjk4NzE0MjksImV4cCI6MTYzMDQ3NjIyOX0.XJ80CoBs4S1AEsoPBWFS5m_ZFPD8uV-X1wVwIEGT9Vc
+
+
+###
+DELETE  http://localhost:5000/api/postLike/61251d0f7fc9d300902bff8a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTI0ODg1MzQxOTUwOTA0YTRjZDQ1OWIiLCJpYXQiOjE2Mjk4NzE0MjksImV4cCI6MTYzMDQ3NjIyOX0.XJ80CoBs4S1AEsoPBWFS5m_ZFPD8uV-X1wVwIEGT9Vc
+
+
+###
+POST http://localhost:5000/api/postComment/612922398a91330868c6fee4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTI0ODg1MzQxOTUwOTA0YTRjZDQ1OWIiLCJpYXQiOjE2Mjk4NzE0MjksImV4cCI6MTYzMDQ3NjIyOX0.XJ80CoBs4S1AEsoPBWFS5m_ZFPD8uV-X1wVwIEGT9Vc
+
+{
+    "content": "comment 5"
+}
+
+###
+POST http://localhost:5000/api/postComment/61251d0f7fc9d300902bff8a/612a679b9a7a245dc04f0490
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTI0ODg1MzQxOTUwOTA0YTRjZDQ1OWIiLCJpYXQiOjE2Mjk4NzE0MjksImV4cCI6MTYzMDQ3NjIyOX0.XJ80CoBs4S1AEsoPBWFS5m_ZFPD8uV-X1wVwIEGT9Vc
+
+{
+    "content": "trả lời: bài viết này không hay"
+}
+
+
+###
+GET http://localhost:5000/api/postComment/61251d0f7fc9d300902bff8a
+
+
+###
+GET http://localhost:5000/api/postComment/61251d0f7fc9d300902bff8a/612a679b9a7a245dc04f0490
+
+###
+DELETE  http://localhost:5000/api/postComment/612a672bb6af108b14f4e8f3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTI0ODg1MzQxOTUwOTA0YTRjZDQ1OWIiLCJpYXQiOjE2Mjk4NzE0MjksImV4cCI6MTYzMDQ3NjIyOX0.XJ80CoBs4S1AEsoPBWFS5m_ZFPD8uV-X1wVwIEGT9Vc

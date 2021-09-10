@@ -1,0 +1,42 @@
+.roundbutton{
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    transition-property: opacity;
+    transition-duration: 300ms;
+    transition-timing-function: linear;
+}
+
+.roundbutton .round{
+    /* border: 1px solid #000000; */
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 1rem; */
+}
+
+.roundbutton .round img{
+    /* height: 1rem; */
+    /* border-radius: 50%; */
+}
+
+.roundbutton .content{
+    text-align: center;
+    font-weight: 600;
+    margin-top: 0.1rem;
+    width: 100%;
+    /* color: rgba(255, 255, 255, 0.85); */
+}
+
+
+.roundbutton:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}

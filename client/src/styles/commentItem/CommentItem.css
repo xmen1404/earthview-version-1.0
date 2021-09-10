@@ -1,0 +1,94 @@
+.commentItem-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 0.7rem;
+}
+
+.commentItem-container:first-child{
+    margin-top: 0;
+}
+
+.commentItem-container .profilePicture {
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+    margin: 0.5rem 0.3rem 0 0;
+}
+
+.commentItem-container .profilePicture img {
+    border-radius: 50%;
+    height: 2.5rem;
+}
+
+.commentItem-container .background-container {
+    width: 100%;
+    margin-left: 0.3rem;
+    background-color: rgb(231, 225, 223);
+    border-radius: 15px;
+    flex-grow: 1;
+}
+
+.commentItem-container .background-container .margin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 1rem 2rem 1rem 1rem;
+}
+
+.commentItem-container .background-container .margin-container .comment-header {
+    position: relative;
+}
+
+.commentItem-container .background-container .margin-container .comment-header .comment-author {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.commentItem-container .background-container .margin-container .comment-header .comment-time {
+    margin-left: 1.5rem;
+    font-size: 15px;
+}
+
+.commentItem-container .background-container .margin-container .comment-body {
+    margin-top: 0.8rem;
+    font-size: 16px;
+}
+
+.commentItem-container .background-container .margin-container .comment-interaction {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.commentItem-container .background-container .margin-container .comment-interaction .love-button {
+    display: flex;
+    align-items: center;
+}
+
+.commentItem-container .background-container .margin-container .comment-interaction .love-button .love-count {
+    margin-bottom: 0.1rem;
+    margin-left: 0.3rem;
+}
+
+.commentItem-container .background-container .margin-container .comment-interaction .love-button img{
+    width: 1.15rem;
+}
+
+
+.commentItem-container .background-container .margin-container .comment-interaction .love-button img:hover{
+    cursor: pointer;
+}
+
+.commentItem-container .background-container .margin-container .comment-interaction .reply {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.commentItem-container .background-container .margin-container .comment-interaction .reply .reply-list {
+    color: rgb(87, 126, 129);
+    font-weight: 700;
+    margin-left: 1rem;
+}

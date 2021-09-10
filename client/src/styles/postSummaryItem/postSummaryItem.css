@@ -1,0 +1,67 @@
+.post-summary-container {
+    position: relative;
+    /* background-color: blue; */
+    height: 100%;
+    width: 100%;
+    /* overflow: hidden; */
+}
+
+.post-summary-container .postSummaryItem-background{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.post-summary-container .postSummaryItem-background img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.post-summary-container .postSummaryItem{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    z-index: 1;
+}
+.post-summary-container .postSummaryItem:hover {
+    opacity: 1;
+}
+
+.post-summary-container .postSummaryItem .summary-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+}
+
+
+.post-summary-container .postSummaryItem .postSummaryItem-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.post-summary-container .postSummaryItem .postSummaryItem-content .postSummaryItem-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.post-summary-container .postSummaryItem .postSummaryItem-content .postSummaryItem-data img {
+    margin-right: 0.3rem;
+}
+.post-summary-container .postSummaryItem .postSummaryItem-content .postSummaryItem-text {
+    text-align: center;
+    margin-bottom: 0.1rem;
+}

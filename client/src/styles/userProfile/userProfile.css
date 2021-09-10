@@ -1,0 +1,211 @@
+.userProfile-container {
+        /* background-color: rgba(0, 0, 0, 0.5); */
+        z-index: 9999999;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+} 
+
+.userProfile-container .userProfile-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: url(../../assets/Icon_5.jpg) no-repeat center center/cover; */
+    /* z-index: 99999; */
+    z-index: 99999;
+    /* opacity: 0.4; */
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.userProfile-container .userProfile-innerContainer {
+    position: relative;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-left: 19vw; */
+    /* margin-left: 50vw; */
+    width: 60vw;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    z-index: 99999;
+    height: 100%;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile-left-tools {
+    flex-basis: 10%;
+}
+.userProfile-container .userProfile-innerContainer .userProfile {
+    flex-basis: 80%;
+    background-color: white;
+    border-radius: 15px;
+    max-height: 100vh;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content{
+    /* height: 100%; */
+    position: relative;
+    margin: 0.7rem;
+    /* padding-bottom: 3rem; */
+    /* background-color: chocolate; */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 100vh;
+    overflow: scroll;
+    overscroll-behavior: contain;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content::-webkit-scrollbar {
+    display: none;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .user-wall-img {
+    width: 100%;
+    position: relative;
+    /* overflow: hidden; */
+    height: 20rem;
+    
+    /* object-fit: cover; */
+    /* z-index: 999999; */
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .user-wall-img .user-wall-img-adjust{
+    position: absolute;
+    bottom: 0.85rem;
+    right: 1rem;
+    color: #ffffff;
+    font-weight: 500;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    padding: 0.3rem 1.15rem 0.45rem 1.15rem;
+    z-index: 100000;
+    /* display: flex;
+    flex-direction: row; */
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile label:hover{
+    cursor: pointer;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .user-wall-img .user-wall-img-adjust img{
+    width: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .user-wall-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .userProfile-postList {
+    padding: 0 3rem;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .UserProfile-author {
+    position: relative;
+    margin-top: -3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 99999;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .UserProfile-author .user-profile-img{
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    border: 0.3rem solid white;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .UserProfile-author .accountFrom{
+    position: absolute;
+    height: 2.2rem;
+    width: 2.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    /* background-color: #cecece; */
+    top: 3.8rem;
+    right: 40%;
+    z-index: 10;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .UserProfile-author .user-profile-img img{
+    /* max-height: 6rem; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .UserProfile-author .user-name {
+    margin-top: 0.5rem;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .UserProfile-author .user-interactions {
+    margin-top: 0.7rem;
+    width: 19rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .UserProfile-author .post-summary {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    width: 100%;
+    height: 12rem;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile .userProfile-content .UserProfile-author .post-summary .post-summary-item {
+    width: 12rem;
+    border-collapse: separate;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.userProfile-container .userProfile-innerContainer .right-tools {
+    flex-basis: 10%;
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile-right-tools {
+    flex-basis: 10%; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    /* margin-right: 0.5rem; */
+    /* height: 100%; */
+    /* background-color: orange; */
+}
+
+.userProfile-container .userProfile-innerContainer .userProfile-right-tools .userProfile-close-post {
+    margin-left: 0.8rem;
+}
+
+/* .userProfile .right-tools .share {
+    margin-bottom: 3rem;
+} */

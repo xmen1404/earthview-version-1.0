@@ -1,0 +1,117 @@
+.comment-container {
+    width: 100%;
+    height: 100%;
+}
+
+.comment-container .inner-container {
+    /* background-color: red; */
+    position: relative;
+    height: 90%;
+    /* margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 4rem; */
+    margin: 2rem 5rem 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.comment-container .inner-container .post-comment {
+    position: relative;
+    width: 100%;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.comment-container .inner-container .post-comment .profilePicture {
+    display: flex;
+    align-items: center;
+    margin-right: 0.3rem;
+}
+
+.comment-container .inner-container .post-comment .profilePicture img {
+    border-radius: 50%;
+    height: 2.5rem;
+    border-width: 0;
+}
+
+.comment-container .inner-container .post-comment .input-comment {
+    width: 100%;
+    height: 3rem;
+    margin-left: 0.3rem;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.comment-container .inner-container .post-comment .input-comment .text-input {
+    position: relative;
+    flex-grow: 1;
+}
+
+.comment-container .inner-container .post-comment .input-comment .text-input input {
+    width: 90%;
+    height: 2rem;
+    font-size: 17px;
+    border-width: 0;
+    margin-left: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.comment-container .inner-container .post-comment .input-comment .text-input input:focus {
+    outline: none;
+}
+
+.comment-container .inner-container .post-comment .input-comment .emoji-input {
+    height: 100%;
+    flex-grow: 0;
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.comment-container .inner-container .post-comment .input-comment .emoji-input img:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.comment-container .inner-container .post-comment .input-comment .picture-input {
+    height: 100%;
+    flex-grow: 0;
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.comment-container .inner-container .post-comment .input-comment .picture-input img:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.comment-container .inner-container .comment-list {
+    flex-grow: 1;
+    /* align-items: stretch; */
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 0.7rem;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.comment-container .inner-container .comment-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+
+
+

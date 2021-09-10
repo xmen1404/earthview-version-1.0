@@ -1,0 +1,364 @@
+.community-postitem {
+    /* background-color: rgba(165, 62, 93, 0.2); */
+    /* padding-left: 6rem; */
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 8rem;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    /* border-collapse: separate; */
+}
+
+.postitem-user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* width: 90%; */
+    /* margin: 3rem 0 0 3rem; */
+    /* background-color: rgba(138, 32, 64, 0.2); */
+}
+
+.postitem-user .profilePicture img{
+    border-radius: 50%;
+    height: 2.5rem;
+}
+
+.postitem-user .user-name{
+    margin-left: 0.7rem;
+    font-weight: 500;
+}
+
+.postitem-user .follow{
+    margin-left: 0.7rem;
+}
+
+.postitem-user .createdAt{
+    flex-grow: 1;
+    text-align: end;
+    opacity: 0.7;
+}
+
+.community-postitem .postitem-user .createdAt{
+    margin-right: 1.6rem;
+}
+
+.community-postitem .postitem-content {
+    /* margin: 0 0 0 3rem; */
+    /* padding: 3rem 0 0 3rem; */
+    margin-top: 1rem;
+    flex-basis: 85%;
+}
+
+.community-postitem .postitem-content .header {
+    /* background-color: rgba(84, 62, 165, 0.2); */
+}
+
+.community-postitem .postitem-content .header h4 {
+    margin-top: 0.75rem;
+    margin-bottom: 1.75rem;
+}
+
+.community-postitem .postitem-content .body-container {
+    /* display: flex;
+    flex-direction: row; */
+    width: 100%;
+    /* background-color: red; */
+    height: 100%;
+    /* border-bottom: 2px solid rgb(200, 200, 200); */
+}
+
+.community-postitem .postitem-content .body-container .body {
+    /* background-color: rgba(62, 165, 67, 0.2); */
+    flex-basis: 90%;
+    border-radius: 15px;
+    height: 25rem;
+    /* background-image: url('../../assets/Icon_5.jpg');
+    background-size: cover; */
+}
+
+.community-postitem .postitem-content .body-container .body .description {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    font-size: 19px;
+    opacity: 0;
+    /* align-items: center; */
+    
+}
+
+.community-postitem .postitem-content .body-container .body .description:hover {
+    opacity: 1;
+}
+
+.community-postitem .postitem-content .body-container .body .description .hastag {
+    color: rgb(62, 163, 118);
+    font-weight: 500;
+    /* width: 100%; */
+    margin: 6rem 3rem 1.5rem 4rem;
+    /* background-color: rgba(165, 132, 62, 0.2); */
+}
+
+.community-postitem .postitem-content .body-container .body .description .text {
+    color: white;
+    margin: 0rem 3rem 1rem 4rem;
+    /* width: 100%; */
+    /* margin-top: 2rem; */
+    /* background-color: rgba(165, 132, 62, 0.2); */
+}
+
+.community-postitem .postitem-content .body-container .body .description .article-link-container {
+    /* width: 100%; */
+    width: 6rem;
+    height: 1.7rem;
+    font-size: 15px;
+    margin: 4rem auto 0 auto;
+    color: white;
+    /* background-color: rgba(62, 69, 165); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1.2px solid white;
+}
+
+.community-postitem .postitem-content .body-container .body .description .article-link {
+}
+
+.community-postitem .postitem-content .body-container .body .end-line {
+    margin-top: 6rem;
+    border-bottom: 2px solid rgb(200, 200, 200);
+}
+
+.community-postitem .tools {
+    /* background-color: blue; */
+    flex-basis: 20%;
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.community-postitem .tools .love {
+    /* background-color: rgb(238, 238, 238); */
+}
+.community-postitem .tools .love:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+
+.community-postitem .tools .comment {
+    /* background-color: rgb(238, 238, 238); */
+    /* padding: 0.8rem 0.8rem 0.4rem 0.8rem;
+    border-radius: 50%; */
+    /* margin-top: 1rem;  */
+} 
+
+.community-postitem .tools .comment:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.community-postitem .tools .share {
+    /* background-color: rgb(238, 238, 238); */
+    /* padding: 0.7rem 0.7rem 0.7rem 0.7rem;
+    border-radius: 50%; */
+    /* margin: 1rem 0 0 0; */
+}
+.community-postitem .tools .share-button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+.community-postitem .tools .share-count {
+    /* margin: 0 0 1rem 0; */
+}
+
+.outmost-container {
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    z-index: 9999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+}
+
+.outmost-container .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: url('../../assets/Icon_5.jpg') no-repeat center center/cover; */
+
+    /* z-index: 99999; */
+    z-index: 99999;
+    /* opacity: 0.4; */
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* .outmost-container::before {
+    content:"";
+    position: absolute;
+    top: 0rem;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../assets/Icon_5.jpg');
+    background-size: cover;
+    z-index: 9999999;
+    opacity: 1;
+} */
+
+/* .outmost-container::-webkit-scrollbar {
+    display: none;
+} */
+  
+
+.outmost-container .post-container {
+    position: relative;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 19vw;
+    /* margin-left: 50vw; */
+    width: 60vw;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    z-index: 99999;
+    height: 100%;
+}
+
+.outmost-container .leftAlign{
+    margin-left: 0;
+}
+
+
+
+
+.outmost-container .post-container .post {
+    flex-basis: 80%;
+    /* height: 100%; */
+    background-color: white;
+    border-radius: 15px; 
+    max-height: 100vh;
+}
+
+
+.outmost-container .post-container .left-tools {
+    flex-basis: 10%;
+    /* height: 100%; */
+    /* background-color: orange; */
+}
+
+.outmost-container .post-container .right-tools {
+    flex-basis: 10%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    /* height: 100%; */
+    /* background-color: orange; */
+}
+
+.outmost-container .post-container .right-tools .share {
+    margin-bottom: 3rem;
+}
+
+
+.outmost-container .post-container .post .post-content{
+    /* height: 100%; */
+    margin: 2rem 3.1rem 3rem 3.1rem;
+    /* padding-bottom: 3rem; */
+    /* background-color: chocolate; */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 93vh;
+    overflow: scroll;
+    overscroll-behavior: contain;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.outmost-container .post-container .post .post-content::-webkit-scrollbar {
+    display: none;
+}
+
+.outmost-container .post-container .post .post-content .header {
+    /* background-color: darkgray; */
+    margin-top: 1rem;
+}
+
+.outmost-container .post-container .post .post-content .header h3 {
+    /* margin-top: 4rem; */
+    margin-bottom: 1.75rem;
+}
+
+.outmost-container .post-container .post .post-content .author {
+    background: white;
+}
+
+.outmost-container .post-container .post .post-content .body{
+    margin-top: 2rem;
+}
+
+.outmost-container .post-container .post .post-content .body .text{
+    font-size: 19px;
+    text-align: justify;
+}
+
+.outmost-container .post-container .post .post-content .end-line {
+    margin: 6rem 0 0 0;
+    border-bottom: 2px solid rgb(200, 200, 200);
+}
+
+.outmost-container .post-container .post .post-content .end-author {
+    position: relative;
+    bottom: 1.7rem;
+    margin-bottom: 2rem;
+}
+
+.outmost-container .post-container .post .post-content .end-author .postitem-user {
+    margin: 0 auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.outmost-container .post-container .post .post-content .end-author .postitem-user .profilePicture img{
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+}
+
+.outmost-container .post-container .post .post-content .end-author .postitem-user .user-name{
+    margin: 0;
+}
+
+.outmost-container .post-container .post .post-content .end-author .postitem-user .follow {
+    margin: 0;
+    margin-top: 1rem;
+}
+
+#commentSection {
+    position: relative;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    /* margin-left: 50vw; */
+    width: 40vw;
+    /* background-color: blue; */
+    z-index: 99999;
+    height: 100%;
+}

@@ -1,0 +1,83 @@
+
+.community-submenu {
+    flex-basis: 35%;
+    flex-shrink: 35%;
+    /* background-color: red; */
+    /* height: 70vh; */
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 500;
+}
+
+.community-submenu .submenu-container {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    /*background-color: orange;*/
+}
+
+.submenu-container .block {
+    /* width: 100%; */
+    border: 2px solid rgb(188, 188, 188);
+    margin-top: 1.4rem;
+    border-radius: 10px;
+    /* padding: 1.5rem; */
+}
+
+.submenu-container .block:first-child{
+    margin-top: 3rem;
+    /* padding: 1.2rem; */
+    padding: 1.7rem;
+}
+
+.submenu-container .block:nth-child(2){
+  padding: 0.5rem 0 0.6rem 1.7rem;
+}
+
+.submenu-container .block:nth-child(3){
+  padding: 0.8rem 0 0.8rem 1.7rem;
+}
+
+.submenu-container .block .icon img{
+  margin-bottom: -2px;
+  /* margin-right: 5px; */
+}
+
+.submenu-container .block .icon{
+  display: inline-block;
+  width: 2rem;
+}
+
+/* .submenu-container .block .middle-align{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+} */
+
+.submenu-container .block .home {
+  color: rgb(39, 89, 93);
+}
+.submenu-container .block .follow-list {
+  margin-top: 0.9rem;
+}
+.submenu-container .block .saved-posts {
+  margin-top: 0.9rem;
+}
+
+.submenu-container .block .post-filter {
+  width: 100%;
+}
+
+.submenu-container .block .top-topic {
+  width: 100%;
+}
+.submenu-container .block .top-topic .header{    
+}
+.submenu-container .block .top-topic .body{
+  color:  rgb(102, 102, 102);    
+  /* padding: 0.5rem; */
+}
+
+.submenu-container .block .top-topic .body .topic {
+    margin-top: 0.7rem;
+}
