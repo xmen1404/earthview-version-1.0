@@ -150,7 +150,13 @@ const PostItem = (props) => {
         //         setOpenComment(false);
         // }
 
+        if(openFullPost){
+            setOpenComment(false);
+        }
+
         setOpenFullPost(!openFullPost);
+
+        
     }
 
     const marginTransition = () => {
