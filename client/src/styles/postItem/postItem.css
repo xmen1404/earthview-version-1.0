@@ -4,10 +4,11 @@
     margin-left: 5.5rem;
     /* margin-top: 3rem; */
     margin-bottom: 8rem;
-    width: 50%;
+    /* width: 90%; */
     display: flex;
     flex-direction: row;
     /* border-collapse: separate; */
+    position: relative;
 }
 
 .postitem-user{
@@ -40,15 +41,25 @@
 }
 
 .community-postitem .postitem-user .createdAt{
-    margin-right: 1.6rem;
+    /* margin-right: 1.6rem; */
 }
 
 .community-postitem .postitem-content {
     /* margin: 0 0 0 3rem; */
     /* padding: 3rem 0 0 3rem; */
     margin-top: 1rem;
-    flex-basis: 90%;
+    flex-basis: 47%;
+    /* height: 85vh;
+
+    overflow: scroll;
+    overscroll-behavior: contain;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; */
 }
+
+/* .community-postitem .postitem-content::-webkit-scrollbar {
+    display: none;
+} */
 
 .community-postitem .postitem-content .header {
     /* background-color: rgba(84, 62, 165, 0.2); */
@@ -138,8 +149,8 @@
 
 .community-postitem .tools {
     /* background-color: blue; */
-    flex-basis: 10%;
-    margin-right: 2.5rem;
+    flex-basis: 5%;
+    margin-right: 2.7rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -419,12 +430,17 @@
 }
 
 #commentSection {
-    position: relative;
+    position: absolute;
+    width: 43%;
+    top: 0;
+    right: 0;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     /* margin-left: 50vw; */
-    width: 40vw;
+    /* width: 40vw; */
+    /* flex-basis: 41%; */
     /* background-color: blue; */
-    z-index: 99999;
-    height: 100%;
+    /* z-index: 99999; */
+    /* height: 100%; */
+
 }

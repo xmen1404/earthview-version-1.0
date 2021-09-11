@@ -10,11 +10,15 @@
     margin-top: 0;
 }
 
+.commentItem-container:last-child{
+    margin-bottom: 1.5rem;
+}
+
 .commentItem-container .profilePicture {
     display: flex;
     align-items: center;
     flex-grow: 0;
-    margin: 0.5rem 0.3rem 0 0;
+    margin: 0.5rem 0.7rem 0 0;
 }
 
 .commentItem-container .profilePicture img {

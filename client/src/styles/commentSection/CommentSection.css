@@ -10,7 +10,8 @@
     /* margin-top: 2rem;
     margin-left: 2rem;
     margin-right: 4rem; */
-    margin: 2rem 5rem 2rem 1.5rem;
+    /* margin: 2rem 5rem 2rem 1.5rem; */
+    margin: 0px 0 0 4rem;
     display: flex;
     flex-direction: column;
 }
@@ -29,7 +30,7 @@
 .comment-container .inner-container .post-comment .profilePicture {
     display: flex;
     align-items: center;
-    margin-right: 0.3rem;
+    margin-right: 0.7rem;
 }
 
 .comment-container .inner-container .post-comment .profilePicture img {
@@ -41,9 +42,10 @@
 .comment-container .inner-container .post-comment .input-comment {
     width: 100%;
     height: 3rem;
+    padding-top: 0.4rem;
     margin-left: 0.3rem;
     background-color: white;
-    border-radius: 15px;
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -93,7 +95,10 @@
 }
 
 .comment-container .inner-container .comment-list {
-    flex-grow: 1;
+    /* flex-grow: 1; */
+    height: 76vh;
+    /* padding-bottom: 1rem;
+    margin-bottom: 1rem; */
     /* align-items: stretch; */
     /* background-color: blue; */
     display: flex;
@@ -102,8 +107,8 @@
     margin-top: 0.7rem;
     overflow-y: scroll;
     overscroll-behavior: contain;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
 }
 
 .comment-container .inner-container .comment-list::-webkit-scrollbar {

@@ -1,4 +1,4 @@
-import {useState, useContext, useEffect} from 'react';
+import {useState, useContext, useEffect, useRef} from 'react';
 import { PostLikeContext } from '../../contexts/PostLikeContext';
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -8,6 +8,7 @@ import heartIcon from "../../assets/communityPost-heart-icon.png"
 import redHeartIcon from "../../assets/redHeart_icon.png"
 import commentIcon from "../../assets/communityPost-comment-icon.png"
 import shareIcon from "../../assets/communityPost-share-icon.png"
+import UpBlackArrow from "../../assets/up_black_arrow.png";
 import postBackground from "../../assets/Icon_5.jpg";
 import RoundButton from '../roundbutton/RoundButton';
 import cross_icon from "../../assets/cross_icon.png";
@@ -30,6 +31,8 @@ const PostItem = (props) => {
 
     const {authState: {isAuthenticated}, showLoginPanel} = useContext(AuthContext);
     const {likePost, unlikePost, checkLike} = useContext(PostLikeContext);
+
+    const myRef = useRef(null)
 
     // useEffect(() => {
     //     if(loadOpenComment) {
@@ -56,18 +59,28 @@ const PostItem = (props) => {
         }
     }
 
-    const outsideOpenCommentSection = () => {
-        if(document.body.style.overflowY === "hidden"){
-            document.body.style.overflowY = "scroll";
-        }
-        else{
-            document.body.style.overflowY = "hidden";
+    const OpenCommentSection = () => {
+        // if(document.body.style.overflowY === "hidden"){
+        //     document.body.style.overflowY = "scroll";
+        // }
+        // else{
+        //     document.body.style.overflowY = "hidden";
+        // }
+
+        // setPostContainerClass("post-container leftAlign");
+
+        if(!openFullPost){
+            setOpenFullPost(true);
         }
 
-        setPostContainerClass("post-container leftAlign");
-
-        setOpenFullPost(true);
+        if(!openComment){
+            // myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // window.scrollTo(1000, myRef.current.offsetTop);
+            window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop - 100 })
+        }
+    
         setOpenComment(!openComment);
+
         // setLoadOpenComment(true);
     }
 
@@ -227,6 +240,39 @@ const PostItem = (props) => {
     }
 
 
+    // const handleScrollPost = () => {
+    //     console.log("scrolling");
+    // }
+
+    // window.onscroll = function() {
+    //     if(openFullPost){
+    //         scrollFunction()
+    //     }
+    // };
+
+    // function scrollFunction() {
+
+    //     const divId = "container-" + props.data._id;
+
+    //     const element = document.getElementById(divId)
+    //     var domRect = element.getBoundingClientRect();
+
+    //     console.log(domRect.bottom , window.innerHeight);
+
+    //     var spaceBelow = domRect.bottom - window.innerHeight;
+
+    //     console.log("space", spaceBelow);
+
+    //     if(spaceBelow < 0){
+    //         // setOpenFullPost(false);
+    //         // if(openComment){
+    //         //     setOpenComment(false)
+    //         // }
+    //     }
+    // }
+
+
+
     var userProfilePostItemFlexBasis = {
         background: `url(${props.data.backgroundUrl}) no-repeat center center/cover`,
         flexBasis: "100%"
@@ -238,7 +284,7 @@ const PostItem = (props) => {
     }
 
     return (
-        <div className = "community-postitem">
+        <div className = "community-postitem" id = {"container-" + props.data._id} ref={myRef}>
             {/* {author(props.data.createdAt, "black", true, props.openUserProfile ? 2 : 0)} */}
             {!props.openUserProfile && 
                 <div className="tools">
@@ -247,7 +293,8 @@ const PostItem = (props) => {
                             <RoundButton 
                                 content = "Thu nhỏ"
                                 contentColor = "#000000"
-                                background = {isLike? redHeartIcon: heartIcon}
+                                background = {UpBlackArrow}
+                                backgroundSize = "20%"
                                 radius = "2.5rem"
                                 backgroundColor = "#F5FFFFB2"
                                 handleClick = {switchOpenFullPost}
@@ -272,7 +319,7 @@ const PostItem = (props) => {
                             background = {commentIcon}
                             radius = "2.5rem"
                             backgroundColor = "#F5FFFFB2"
-                            handleClick={outsideOpenCommentSection}
+                            handleClick={OpenCommentSection}
                         ></RoundButton>
                     </div>
                     <div className="share">
@@ -286,6 +333,7 @@ const PostItem = (props) => {
                     </div>
                 </div>
             }
+
             <div className = "postitem-content">
                 {/* <div className="header">
                 </div> */}
@@ -332,7 +380,7 @@ const PostItem = (props) => {
 
 
                     {openFullPost && 
-                        <div className="full-body">
+                        <div className="full-body" id = {"full-body" + props.data._id}>
                             <div className="text" style = {{whiteSpace: "pre-wrap"}}>
                                 {props.data.content}
                             </div>
@@ -382,9 +430,15 @@ const PostItem = (props) => {
                                 </div>
                             </div>
                         </div>
-                    }                     
+                    }                 
                 </div>
             </div>
+
+            {openComment && 
+                <div id="commentSection">
+                    <CommentSection increaseCommentCount = {increaseCommentCount}  updateCommentCount = {updateCommentCount} postId = {props.data._id} />
+                </div>
+            }    
         </div>
     );
 
