@@ -8,6 +8,7 @@ import heartIcon from "../../assets/communityPost-heart-icon.png";
 import redHeartIcon from "../../assets/redHeart_icon.png"
 import moment from 'moment';
 import 'moment/locale/vi';
+import CommentItemLevel2 from "../commentLevel2Item/CommentLevel2Item";
 
 
 // const host = "http://localhost:5000";
@@ -17,11 +18,13 @@ const CommentItem = (props) => {
     // console.log("comment item", props.data);
     const [currentlike, setCurrentLike] = useState(props.data.likes_count);
     const [isLike, setIsLike] = useState(false);
-
+    const [commentLevel2, setCommentLevel2] = useState(false);
     const {authState: {isAuthenticated}, showLoginPanel} = useContext(AuthContext);
     const {likeComment, unlikeComment, checkLike} = useContext(CommentLikeContext);
 
-    
+    const openCommentLevel2 = () => {
+        setCommentLevel2(!commentLevel2);
+    } 
 
     useEffect(() => {
         // console.log("bị reset");
@@ -151,9 +154,19 @@ const CommentItem = (props) => {
                         </div>
                         <div className="reply">
                             <div className="text">Phản Hồi</div>
-                            <div className="reply-list">Xem 2 câu trả lời</div>
+                            {!commentLevel2 && 
+                                <div className="comment-lv2" onClick={openCommentLevel2}>Xem 2 câu trả lời</div>
+                            }
+                            {commentLevel2 && 
+                                <div className="comment-lv2" onClick={openCommentLevel2}>Ẩn 2 câu trả lời</div>
+                            }
                         </div>
                     </div>
+                    {commentLevel2 &&
+                        <div className="comment-lv2-list">
+                            <CommentItemLevel2 data={props.data}></CommentItemLevel2>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

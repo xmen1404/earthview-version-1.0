@@ -19,20 +19,21 @@ const AuthContextProvider = ({children}) => {
 
 
 
-    const showLoginPanel = () => {
-        if(document.body.style.overflowY === "hidden"){
-            document.body.style.overflowY = "scroll";
-        }
-        else{
-            document.body.style.overflowY = "hidden";
-        }
-        // document.body.style.overflowY = "hidden";
+    const redirectToLogin = () => {
+        // if(document.body.style.overflowY === "hidden"){
+        //     document.body.style.overflowY = "scroll";
+        // }
+        // else{
+        //     document.body.style.overflowY = "hidden";
+        // }
+        // // document.body.style.overflowY = "hidden";
 
 
-        dispatch({
-            type: SHOW_LOGIN_PANEL,
-            payload: {}
-        })
+        // dispatch({
+        //     type: SHOW_LOGIN_PANEL,
+        //     payload: {}
+        // })
+        window.location.href = "/login";
     }
 
 
@@ -164,7 +165,7 @@ const AuthContextProvider = ({children}) => {
         }
     }
 
-    const authContextData = { showLoginPanel , loginUser, registerUser, facebookLoginUser, googleLoginUser ,authState }
+    const authContextData = { redirectToLogin , loginUser, registerUser, facebookLoginUser, googleLoginUser ,authState }
 
     return (<AuthContext.Provider  value = {authContextData}>{children}</AuthContext.Provider>)
 

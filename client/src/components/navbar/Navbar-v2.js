@@ -11,7 +11,7 @@ import write_icon from "../../assets/write_icon.png";
 
 const Navbar = (props) => {
 
-    const {authState: {authLoading, isAuthenticated, user}, showLoginPanel} = useContext(AuthContext);
+    const {authState: {authLoading, isAuthenticated, user}, redirectToLogin} = useContext(AuthContext);
 
     // window.onscroll = function() {scrollFunction()};
 
@@ -57,7 +57,7 @@ const Navbar = (props) => {
                                 fontWeight="600"
                                 paddingTop="0.3rem"
                                 paddingBottom="0.3rem"
-                                handleClick={showLoginPanel}
+                                handleClick={redirectToLogin}
                             />
                             <Button 
                                 content="Đăng Nhập"
@@ -70,7 +70,7 @@ const Navbar = (props) => {
                                 // marginLeft="-2rem"
                                 paddingTop="0.25rem"
                                 paddingBottom="0.3rem"
-                                handleClick={showLoginPanel}
+                                handleClick={redirectToLogin}
                             />
                         </div>
                     }

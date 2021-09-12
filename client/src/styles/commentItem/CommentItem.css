@@ -91,8 +91,16 @@
     margin-left: 1rem;
 }
 
-.commentItem-container .background-container .margin-container .comment-interaction .reply .reply-list {
+.commentItem-container .background-container .margin-container .comment-interaction .reply .comment-lv2 {
     color: rgb(87, 126, 129);
     font-weight: 700;
     margin-left: 1rem;
+}
+
+.commentItem-container .background-container .margin-container .comment-interaction .reply .comment-lv2:hover {
+    cursor: pointer;
+}
+
+.commentItem-container .background-container .margin-container .comment-lv2-list {
+    margin-top: 1.5rem;
 }

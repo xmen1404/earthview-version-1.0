@@ -1,0 +1,83 @@
+.lv2-commentItem-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.lv2-commentItem-container:first-child{
+    margin-top: 0;
+}
+
+.lv2-commentItem-container .lv2-profilePicture {
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+    margin: 0.5rem 0.3rem 0 0;
+}
+
+.lv2-commentItem-container .lv2-profilePicture img {
+    border-radius: 50%;
+    height: 2.5rem;
+}
+
+.lv2-commentItem-container .lv2-background-container {
+    width: 100%;
+    margin-left: 0.3rem;
+    background-color: rgb(231, 225, 223);
+    border-radius: 15px;
+    flex-grow: 1;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 1rem 2rem 1rem 1rem;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-header {
+    position: relative;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-header .lv2-comment-author {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-header .lv2-comment-time {
+    margin-left: 1.5rem;
+    font-size: 15px;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-body {
+    margin-top: 0.8rem;
+    font-size: 16px;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-interaction {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-interaction .lv2-love-button {
+    display: flex;
+    align-items: center;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-interaction .lv2-love-button .lv2-love-count {
+    margin-bottom: 0.1rem;
+    margin-left: 0.3rem;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-interaction .lv2-love-button img{
+    width: 1.15rem;
+}
+
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-interaction .lv2-love-button img:hover{
+    cursor: pointer;
+}
+
