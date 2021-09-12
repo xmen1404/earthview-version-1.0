@@ -1,0 +1,8 @@
+.community-tools{
+    height:75vh;
+    width: 27%;
+    background: red;
+    position: fixed;
+    top: 8.5rem;
+    right: 4rem;
+}

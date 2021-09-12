@@ -1,6 +1,7 @@
 import "../../styles/communityBody/communityBody.css";
 import CommunityPosts from "../communityPosts/CommunityPosts";
-import CommunitySubMenu from "../communitySubMenu/CommunitySubMenu";
+// import CommunitySubMenu from "../communitySubMenu/CommunitySubMenu";
+import CommunityTools from "../communityTools/CommunityTools";
 
 import Background from "../../assets/theme/Background.png";
 
@@ -12,6 +13,7 @@ const CommunityBody = () => {
             {/* <img className = "community-body-background"/> */}
             <CommunityPosts></CommunityPosts>
             {/* <CommunitySubMenu></CommunitySubMenu> */}
+            <CommunityTools></CommunityTools>
         </div>
     )
 }
