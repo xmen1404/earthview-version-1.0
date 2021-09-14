@@ -22,7 +22,7 @@ const CommentSection = (props) => {
     const [content, setContent] = useState("")
 
     const {commentPost, getPostComment, deleteComment, updateComment} = useContext(PostCommentContext);
-    const {authState: {isAuthenticated, user}, showLoginPanel} = useContext(AuthContext);
+    const {authState: {isAuthenticated, user}, redirectToLogin} = useContext(AuthContext);
 
     const [socket, setSocket] = useState(null);
 
@@ -98,7 +98,8 @@ const CommentSection = (props) => {
 
         if(!isAuthenticated){
             console.log("hello");
-            showLoginPanel();
+            // showLoginPanel();
+            redirectToLogin();
             return;
         }
 

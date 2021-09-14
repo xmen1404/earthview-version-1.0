@@ -72,7 +72,7 @@ const GoogleLogin = (props) => {
             <GoogleLoginBtn
                 className="googleBtnClass"
                 clientId="758282287979-fjtnthm0sborf4g7283cl17nulfp04se.apps.googleusercontent.com"
-                buttonText="LOGIN ƯITH GOOGLE"
+                buttonText="LOGIN WITH GOOGLE"
                 onSuccess={responseSuccessGoogle}
                 onFailure={responseErrorGoogle}
                 cookiePolicy={'single_host_origin'}

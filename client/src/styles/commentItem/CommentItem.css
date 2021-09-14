@@ -10,9 +10,9 @@
     margin-top: 0;
 }
 
-.commentItem-container:last-child{
+/* .commentItem-container:last-child{
     margin-bottom: 1.5rem;
-}
+} */
 
 .commentItem-container .profilePicture {
     display: flex;
@@ -29,7 +29,8 @@
 .commentItem-container .background-container {
     width: 100%;
     margin-left: 0.3rem;
-    background-color: rgb(231, 225, 223);
+    /* background-color: rgb(231, 225, 223); */
+    background-color: rgba(255, 255, 255, 0.75);
     border-radius: 15px;
     flex-grow: 1;
 }

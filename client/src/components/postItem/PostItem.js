@@ -29,10 +29,10 @@ const PostItem = (props) => {
 
     const [currentComment, setCurrentComment] = useState(props.data.comments_count);
 
-    const {authState: {isAuthenticated}, showLoginPanel} = useContext(AuthContext);
+    const {authState: {isAuthenticated}, redirectToLogin} = useContext(AuthContext);
     const {likePost, unlikePost, checkLike} = useContext(PostLikeContext);
 
-    const myRef = useRef(null)
+    // const myRef = useRef(null)
 
     // useEffect(() => {
     //     if(loadOpenComment) {
@@ -73,11 +73,11 @@ const PostItem = (props) => {
             setOpenFullPost(true);
         }
 
-        if(!openComment){
-            // myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            // window.scrollTo(1000, myRef.current.offsetTop);
-            window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop - 100 })
-        }
+        // if(!openComment){
+        //     // myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        //     // window.scrollTo(1000, myRef.current.offsetTop);
+        //     window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop - 100 })
+        // }
     
         setOpenComment(!openComment);
 
@@ -177,7 +177,8 @@ const PostItem = (props) => {
 
     const likePostHandle = async () => {
         if(!isAuthenticated){
-            showLoginPanel();
+            // showLoginPanel();
+            redirectToLogin();
             return;
         }
 
@@ -289,8 +290,31 @@ const PostItem = (props) => {
         };
     }
 
+    let closePost;
+
+    const handlePostScroll = (event) => {
+        if(openFullPost){
+            // console.log("scrolling....");
+            const target = event.target;
+            
+            // console.log("check", target.scrollHeight - target.scrollTop, target.clientHeight);
+
+            if(target.scrollHeight - target.scrollTop - 3 < target.clientHeight){
+                // console.log("reached bottom");
+                closePost = setTimeout(() => {
+                    switchOpenFullPost();
+                }, 10000);
+            }
+            else{
+                if(closePost){
+                    clearTimeout(closePost);
+                }
+            }
+        }
+    }
+
     return (
-        <div className = "community-postitem" id = {"container-" + props.data._id} ref={myRef}>
+        <div className = "community-postitem" onScroll = {(event) => {handlePostScroll(event)}}>
             {/* {author(props.data.createdAt, "black", true, props.openUserProfile ? 2 : 0)} */}
             {!props.openUserProfile && 
                 <div className="tools">
@@ -386,7 +410,7 @@ const PostItem = (props) => {
 
 
                     {openFullPost && 
-                        <div className="full-body" id = {"full-body" + props.data._id}>
+                        <div className="full-body">
                             <div className="text" style = {{whiteSpace: "pre-wrap"}}>
                                 {props.data.content}
                             </div>

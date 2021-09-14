@@ -1,4 +1,5 @@
 .googleBtnClass{
     width: 100%;
-    border-radius: 5px !important;
+    height: 100%;
+    border-radius: 20px !important;
 }

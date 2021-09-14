@@ -35,6 +35,15 @@
     margin-top: 0.1rem;
     width: 100%;
     /* color: rgba(255, 255, 255, 0.85); */
+    /* font-family: Lato; */
+    font-style: normal;
+    /* font-weight: 600; */
+    font-size: 1rem;
+    /* line-height: 24px; */
+    /* or 171% */
+    /* letter-spacing: 0.15px; */
+
+    color: #042330;
 }
 
 

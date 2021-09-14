@@ -19,7 +19,7 @@ const CommentItem = (props) => {
     const [currentlike, setCurrentLike] = useState(props.data.likes_count);
     const [isLike, setIsLike] = useState(false);
     const [commentLevel2, setCommentLevel2] = useState(false);
-    const {authState: {isAuthenticated}, showLoginPanel} = useContext(AuthContext);
+    const {authState: {isAuthenticated}, redirectToLogin} = useContext(AuthContext);
     const {likeComment, unlikeComment, checkLike} = useContext(CommentLikeContext);
 
     const openCommentLevel2 = () => {
@@ -76,7 +76,8 @@ const CommentItem = (props) => {
     const likeCommentHandle = async () => {
         if(!isAuthenticated){
             // console.log("hello");
-            showLoginPanel();
+            // showLoginPanel();
+            redirectToLogin();
             return;
         }
 

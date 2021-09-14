@@ -13,7 +13,7 @@ const CommunityBody = () => {
             {/* <img className = "community-body-background"/> */}
             <CommunityPosts></CommunityPosts>
             {/* <CommunitySubMenu></CommunitySubMenu> */}
-            <CommunityTools></CommunityTools>
+            {/* <CommunityTools></CommunityTools> */}
         </div>
     )
 }

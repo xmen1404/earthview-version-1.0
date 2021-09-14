@@ -9,6 +9,15 @@
     flex-direction: row;
     /* border-collapse: separate; */
     position: relative;
+    height: 85vh;
+    overflow-y: scroll;
+    /* overscroll-behavior: contain; */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+}
+
+.community-postitem::-webkit-scrollbar {
+    display: none;
 }
 
 .postitem-user{
@@ -47,7 +56,7 @@
 .community-postitem .postitem-content {
     /* margin: 0 0 0 3rem; */
     /* padding: 3rem 0 0 3rem; */
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     flex-basis: 47%;
     /* height: 85vh;
 
@@ -63,14 +72,26 @@
 
 .community-postitem .postitem-content .header {
     /* background-color: rgba(84, 62, 165, 0.2); */
-    margin-top: 0.25rem;
+    /* margin-top: 0.25rem; */
+    margin-top: 0.5rem;
     margin-bottom: 1.5rem;
 }
 
 .community-postitem .postitem-content .header h3 {
     /* margin-top: 0.75rem;
     margin-bottom: 1.75rem; */
+    /* margin-top: 0.75rem; */
     margin: 0;
+    font-family: Noto Serif;
+    font-style: normal;
+    font-weight: bold;
+    /* font-size: 24px; */
+    /* line-height: 24px; */
+    /* identical to box height, or 100% */
+
+    letter-spacing: 0.5px;
+
+    color: #042330;
 }
 
 .community-postitem .postitem-content .body-container {
@@ -78,7 +99,7 @@
     flex-direction: row; */
     width: 100%;
     /* background-color: red; */
-    height: 100%;
+    /* height: 100%; */
     /* border-bottom: 2px solid rgb(200, 200, 200); */
 }
 
@@ -149,6 +170,9 @@
 
 .community-postitem .tools {
     /* background-color: blue; */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
     flex-basis: 5%;
     margin-right: 2.7rem;
     display: flex;
@@ -156,7 +180,7 @@
     justify-content: flex-end;
     align-items: center;
     margin-bottom: 1rem;
-    height: 30rem;
+    height: 29rem;
 }
 
 .community-postitem .tools .love {
@@ -197,12 +221,29 @@
 
 
 .community-postitem .postitem-content .body-container .full-body{
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
 }
 
 .community-postitem .postitem-content .body-container .full-body .text{
+    /* font-family: Lora;
+    white-space: pre-wrap;
     font-size: 19px;
+    line-height: 30px;
+    font-weight: 400;
     text-align: justify;
+    letter-spacing: 0.4px; */
+
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 30px;
+    /* or 158% */
+
+    text-align: justify;
+    letter-spacing: 0.4px;
+
+    color: #042330;
 }
 
 .community-postitem .postitem-content .body-container .full-body .end-line {
@@ -238,6 +279,16 @@
     margin: 0;
     margin-top: 1rem;
 }
+
+/* .community-postitem .postitem-content .body-container .full-body .text{
+    font-family: Lora;
+    white-space: pre-wrap;
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 400;
+    text-align: justify;
+    letter-spacing: 0.4px;
+} */
 
 
 
@@ -380,6 +431,7 @@
 .outmost-container .post-container .post .post-content .header h3 {
     /* margin-top: 4rem; */
     margin-bottom: 1.75rem;
+    
 }
 
 .outmost-container .post-container .post .post-content .author {
@@ -430,11 +482,15 @@
 }
 
 #commentSection {
-    position: absolute;
-    width: 43%;
+    position: -webkit-sticky;
+    position: sticky;
     top: 0;
+    /* position: absolute; */
+    margin-left: 1.5%;
+    width: 43%;
+    /* top: 0; */
     right: 0;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
     margin-bottom: 0.5rem;
     /* margin-left: 50vw; */
     /* width: 40vw; */
