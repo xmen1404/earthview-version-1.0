@@ -92,6 +92,11 @@
     margin-left: 1rem;
 }
 
+
+.commentItem-container .background-container .margin-container .comment-interaction .reply .text:hover{
+    cursor: pointer;
+}
+
 .commentItem-container .background-container .margin-container .comment-interaction .reply .comment-lv2 {
     color: rgb(87, 126, 129);
     font-weight: 700;
@@ -105,3 +110,9 @@
 .commentItem-container .background-container .margin-container .comment-lv2-list {
     margin-top: 1.5rem;
 }
+
+
+
+/* .commentItem-container input{
+
+} */

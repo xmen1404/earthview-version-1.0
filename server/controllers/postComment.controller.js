@@ -40,6 +40,8 @@ module.exports.replyCommentPost = async (req, res) => {
 
         await newComment.save();
 
+        await newComment.populate('user', ['name', 'profilePicture']).execPopulate();
+
         res.json({success: true, message: "comment successfully", comment: newComment});
 
 
@@ -70,7 +72,7 @@ module.exports.getPostComment = async (req, res) => {
 module.exports.getReplyPostComment = async (req, res) => {
     try{
         const condition = {post: req.params.postId, parent: req.params.commentId};
-        const comments = await PostCommentModel.find(condition).sort({ _id: -1 })
+        const comments = await PostCommentModel.find(condition)
                                         .populate('user', ['name', 'profilePicture'])
                                        
         res.json({success: true, replyComments: comments});

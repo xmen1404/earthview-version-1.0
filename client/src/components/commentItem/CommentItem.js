@@ -9,7 +9,10 @@ import redHeartIcon from "../../assets/redHeart_icon.png"
 import moment from 'moment';
 import 'moment/locale/vi';
 import CommentItemLevel2 from "../commentLevel2Item/CommentLevel2Item";
-
+import tempProfilePicture from "../../assets/Icon_2.jpg";
+import emojiIcon from "../../assets/emoji-icon.png";
+import libraryIcon from "../../assets/library-icon.png";
+import { PostCommentContext } from "../../contexts/PostCommentContext";
 
 // const host = "http://localhost:5000";
 
@@ -19,17 +22,61 @@ const CommentItem = (props) => {
     const [currentlike, setCurrentLike] = useState(props.data.likes_count);
     const [isLike, setIsLike] = useState(false);
     const [commentLevel2, setCommentLevel2] = useState(false);
-    const {authState: {isAuthenticated}, redirectToLogin} = useContext(AuthContext);
+    const [replyComment, setReplyComment] = useState(false);
+    const [content, setContent] = useState("");
+    const [replyList, setReplyList] = useState([]);
+
+    const {authState: {isAuthenticated, user}, redirectToLogin} = useContext(AuthContext);
     const {likeComment, unlikeComment, checkLike} = useContext(CommentLikeContext);
 
-    const openCommentLevel2 = () => {
-        setCommentLevel2(!commentLevel2);
+    const {repliesComment, getCommentReplies, deleteComment, updateComment} = useContext(PostCommentContext);
+    
+
+    const openCommentLevel2 = async () => {
+
+        if(replyComment){
+            setReplyComment(false);
+        }
+        
+        if(commentLevel2){
+            setCommentLevel2(false);
+            await getAllReplies();
+        }
+        else{
+            setCommentLevel2(true);
+        }
+
+        // if(replyComment){
+        //     setReplyComment(false);
+        // }
+
+        // setCommentLevel2(!commentLevel2);
     } 
 
     useEffect(() => {
         // console.log("bị reset");
         checkCommentLike();
     }, [props.data]);
+
+
+    const getAllReplies = async () => {
+        const res = await getCommentReplies(props.postId, props.data._id);
+        // console.log("debug comment list", res);    
+
+        setReplyList(res.data.replyComments);
+    }
+
+
+    useEffect(() => {
+        // async function getAllReplies() {
+        //     const res = await getCommentReplies(props.postId, props.data._id);
+        //     // console.log("debug comment list", res);    
+
+        //     setReplyList(res.data.replyComments);
+        // }
+        
+        getAllReplies();
+    }, [])
 
 
     useEffect(() => {
@@ -51,6 +98,16 @@ const CommentItem = (props) => {
             }  
         })
     },[props.socket, currentlike]);
+
+
+    useEffect(() => {
+        props.socket.on("ServerSendClient-reply", (commentId, reply) => {
+            if(commentId === props.data._id){
+                setReplyList(curReplies => [...curReplies, reply]);
+            }
+            // return;
+        })
+    }, [props.socket, setReplyList]);
 
     
     const checkCommentLike = async () => {
@@ -138,6 +195,72 @@ const CommentItem = (props) => {
     // })
 
 
+    const reply = () => {
+        setCommentLevel2(true);
+        setReplyComment(true);
+
+        // document.getElementById("replyInput").focus();
+    }
+
+    useEffect(() => {
+        if(replyComment){
+            document.getElementById("replyInput").focus();
+        }
+    }, [replyComment]);
+
+
+
+
+
+    const handleChange = (event) => {
+        // console.log(event.target.value);
+        setContent(event.target.value);
+    }
+
+    const handleOnKeyDown = (event) => {
+        if (event.keyCode === 13) {
+            // console.log('enter');
+            submitComment();
+        }
+    }
+
+    const submitComment = async () => {
+
+        if(!isAuthenticated){
+            console.log("hello");
+            // showLoginPanel();
+            redirectToLogin();
+            return;
+        }
+
+
+        const data = {
+            content: content
+        }
+
+        console.log("start sending...", data);
+
+        const res = await repliesComment(props.postId, props.data._id, data);
+
+
+        if(res.data.success){
+            // window.location.href = '/'; 
+            // console.log("success");
+            // await props.updateCommentCount();
+            // socketRef.current.emit("ClientSendServer", res.data.comment);
+            props.socket.emit("ClientSendServer-reply", props.data._id, res.data.comment);
+
+            setContent("");
+
+            return;
+        }
+
+        return;
+
+        // setContent("");
+    }
+
+
     return (
         <div className="commentItem-container">
             <div className = "profilePicture"><img src = {props.data.user.profilePicture} alt = "profile-picture"></img></div>
@@ -154,19 +277,51 @@ const CommentItem = (props) => {
                             <div className="love-count">{currentlike}</div>
                         </div>
                         <div className="reply">
-                            <div className="text">Phản Hồi</div>
-                            {!commentLevel2 && 
-                                <div className="comment-lv2" onClick={openCommentLevel2}>Xem 2 câu trả lời</div>
+                            <div className="text" onClick = {reply}>Phản Hồi</div>
+                            {!commentLevel2 && (replyList.length > 0) &&
+                                <div className="comment-lv2" onClick={openCommentLevel2}>Xem {replyList.length} câu trả lời</div>
                             }
-                            {commentLevel2 && 
-                                <div className="comment-lv2" onClick={openCommentLevel2}>Ẩn 2 câu trả lời</div>
+                            {commentLevel2 && (replyList.length > 0) &&
+                                <div className="comment-lv2" onClick={openCommentLevel2}>Ẩn {replyList.length} câu trả lời</div>
                             }
                         </div>
                     </div>
                     {commentLevel2 &&
                         <div className="comment-lv2-list">
-                            <CommentItemLevel2 data={props.data}></CommentItemLevel2>
+                            {/* <CommentItemLevel2 data={props.data}></CommentItemLevel2> */}
+                            {replyList && replyList.map((comment) => {
+                                return <CommentItemLevel2 
+                                            key = {comment._id} 
+                                            updateComment = {props.updateComment} 
+                                            socket = {props.socket} 
+                                            data = {comment}
+                                        ></CommentItemLevel2>
+                            })}
                         </div>
+                    }
+
+                    {replyComment && 
+                        <section className="post-comment">
+                            <div className = "profilePicture"><img src = {user.profilePicture} alt = "profile-picture"></img></div>
+                            <div className="input-comment">
+                                <div className="text-input">
+                                    <input 
+                                        id = "replyInput"
+                                        type="text" 
+                                        placeholder="Chia sẻ phản hồi của bạn..." 
+                                        value = {content} 
+                                        onChange = {(event) => handleChange(event)}
+                                        onKeyDown={(e) => handleOnKeyDown(e)}
+                                    ></input>
+                                </div>
+                                <div className="emoji-input">
+                                    <img src={emojiIcon}></img>
+                                </div>
+                                <div className="picture-input">
+                                    <img src={libraryIcon}></img>
+                                </div>
+                            </div>
+                        </section>
                     }
                 </div>
             </div>

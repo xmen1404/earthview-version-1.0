@@ -301,14 +301,20 @@ const PostItem = (props) => {
 
             if(target.scrollHeight - target.scrollTop - 3 < target.clientHeight){
                 // console.log("reached bottom");
+
+                clearTimeout(closePost);
                 closePost = setTimeout(() => {
+                    // console.log("closed");
                     switchOpenFullPost();
                 }, 10000);
             }
-            else{
-                if(closePost){
-                    clearTimeout(closePost);
-                }
+
+            if(target.scrollHeight - target.scrollTop > target.clientHeight + 5 ){
+                // console.log("closing");
+                clearTimeout(closePost);
+                // if(closePost){
+                //     clearTimeout(closePost);
+                // }
             }
         }
     }
@@ -464,11 +470,15 @@ const PostItem = (props) => {
                 </div>
             </div>
 
-            {openComment && 
-                <div id="commentSection">
+            {/* {openComment && 
+                <div id="commentSection" className = {openComment ? "show": undefined}>
                     <CommentSection increaseCommentCount = {increaseCommentCount}  updateCommentCount = {updateCommentCount} postId = {props.data._id} />
                 </div>
-            }    
+            } */}
+
+            <div id="commentSection" className = {openComment ? "comment-show": "comment-hide"}>
+                <CommentSection increaseCommentCount = {increaseCommentCount}  updateCommentCount = {updateCommentCount} postId = {props.data._id} />
+            </div>
         </div>
     );
 

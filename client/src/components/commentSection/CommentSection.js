@@ -182,7 +182,7 @@ const CommentSection = (props) => {
                 <section className="comment-list">
                     {/* map comment list from data */}
                     {commentList && socket && commentList.map((comment) => {
-                        return <CommentItem key = {comment._id} updateComment = {updateComment} socket = {socket} data = {comment}/>
+                        return <CommentItem key = {comment._id} postId = {props.postId} updateComment = {updateComment} socket = {socket} data = {comment}/>
                     })}
                     
                 </section>
