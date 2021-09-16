@@ -8,6 +8,10 @@ import libraryIcon from "../../assets/library-icon.png";
 import CommentItem from "../commentItem/CommentItem";
 import { PostCommentContext } from "../../contexts/PostCommentContext";
 import { AuthContext } from "../../contexts/AuthContext";
+import {apiUrl, LOCAL_STORAGE_TOKEN_NAME} from '../../contexts/constants';
+import axios from 'axios';
+import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
+import { checkText } from 'smile2emoji'
 
 const host = "http://localhost:5000";
 
@@ -20,6 +24,8 @@ const CommentSection = (props) => {
 
     const [commentList, setCommentList] = useState([]);
     const [content, setContent] = useState("")
+    const [commentImages, setCommentImages] = useState([]);
+    const [openEmojiPanel, setOpenEmojiPanel] = useState(false);
 
     const {commentPost, getPostComment, deleteComment, updateComment} = useContext(PostCommentContext);
     const {authState: {isAuthenticated, user}, redirectToLogin} = useContext(AuthContext);
@@ -84,8 +90,12 @@ const CommentSection = (props) => {
 
     const handleChange = (event) => {
         // console.log(event.target.value);
-        setContent(event.target.value);
+        setContent(checkText(event.target.value));
     }
+
+    const onEmojiClick = (event, emojiObject) => {
+        setContent(content + emojiObject.emoji);
+    };
 
     const handleOnKeyDown = (event) => {
         if (event.keyCode === 13) {
@@ -105,7 +115,8 @@ const CommentSection = (props) => {
 
 
         const data = {
-            content: content
+            content: content,
+            images: commentImages
         }
 
         const res = await commentPost(props.postId, data);
@@ -119,6 +130,7 @@ const CommentSection = (props) => {
             socket.emit("ClientSendServer", res.data.comment);
 
             setContent("");
+            setCommentImages([]);
 
             return;
         }
@@ -126,6 +138,37 @@ const CommentSection = (props) => {
         return;
 
         // setContent("");
+    }
+
+
+
+    const handleChangeCommentImages = async (event) => {
+        try{
+
+            console.log("hello");
+
+            const url = apiUrl + '/uploads';
+            // const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
+
+            const formData = new FormData();
+
+            formData.append("file", event.target.files[0]);
+
+            const res = await axios.post(url, formData);
+
+            console.log("check res", res.data.url);
+
+            setCommentImages(curCommentImages => [...curCommentImages, res.data.url])
+
+            // return(list);
+
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+    const showEmojiPanel = () => {
+        setOpenEmojiPanel(!openEmojiPanel);
     }
 
     return (
@@ -144,18 +187,55 @@ const CommentSection = (props) => {
                                     onChange = {(event) => handleChange(event)}
                                     onKeyDown={(e) => handleOnKeyDown(e)}
                                 ></input>
+
+                                {/* <textarea
+                                    placeholder="Chia sẻ cảm nghĩ của bạn ..." 
+                                    value = {content} 
+                                    onChange = {(event) => handleChange(event)}
+                                    onKeyDown={(e) => handleOnKeyDown(e)}
+                                ></textarea> */}
+
+                                <div className="emoji-input">
+                                    <img src={emojiIcon} onClick = {showEmojiPanel}></img>
+                                </div>
+
+                                <div className="picture-input">
+                                    <input type="file" name="file" onChange={handleChangeCommentImages} id={"comment-file-button-" + props.postId} style={{display:"none"}}/>
+                                    <label for={"comment-file-button-" + props.postId}>
+                                        <div>
+                                            <img src = {libraryIcon} style = {{width: "90%"}} alt = "add_images"/>
+                                        </div>
+                                    </label>
+                                    {/* <img src={libraryIcon}></img> */}
+                                </div>
+
+                                {openEmojiPanel &&
+                                    <div className = "emoji-panel">
+                                        <Picker
+                                            onEmojiClick={onEmojiClick}
+                                            // pickerStyle={{ height: '50%' }}
+                                            // disableAutoFocus={false}
+                                            // skinTone={SKIN_TONE_MEDIUM_DARK}
+                                            // groupNames={{ smileys_people: 'PEOPLE' }}
+                                            // native
+                                        />
+                                    </div>
+                                }
                             </div>
-                            <div className="emoji-input">
-                                <img src={emojiIcon}></img>
-                            </div>
-                            <div className="picture-input">
-                                <img src={libraryIcon}></img>
-                            </div>
+
+                            {commentImages.length > 0 &&
+                                <div className = "comment-images">
+                                    {commentImages.map((image) => {
+                                        return <img src = {image} alt = "commentImage"></img>
+                                    })}
+                                </div>
+                            }
                         </div>
                     </section>
                 }
 
-                {!isAuthenticated &&
+
+                {!isAuthenticated && 
                     <section className="post-comment">
                         <div className = "profilePicture"><img src = {tempProfilePicture} alt = "profile-picture"></img></div>
                         <div className="input-comment">
@@ -167,13 +247,49 @@ const CommentSection = (props) => {
                                     onChange = {(event) => handleChange(event)}
                                     onKeyDown={(e) => handleOnKeyDown(e)}
                                 ></input>
+
+                                {/* <textarea
+                                    placeholder="Chia sẻ cảm nghĩ của bạn ..." 
+                                    value = {content} 
+                                    onChange = {(event) => handleChange(event)}
+                                    onKeyDown={(e) => handleOnKeyDown(e)}
+                                ></textarea> */}
+
+                                <div className="emoji-input">
+                                    <img src={emojiIcon} onClick = {showEmojiPanel}></img>
+                                </div>
+
+                                <div className="picture-input">
+                                    <input type="file" name="file" onChange={handleChangeCommentImages} id={"comment-file-button-" + props.postId} style={{display:"none"}}/>
+                                    <label for={"comment-file-button-" + props.postId}>
+                                        <div>
+                                            <img src = {libraryIcon} style = {{width: "90%"}} alt = "add_images"/>
+                                        </div>
+                                    </label>
+                                    {/* <img src={libraryIcon}></img> */}
+                                </div>
+
+                                {openEmojiPanel &&
+                                    <div className = "emoji-panel">
+                                        <Picker
+                                            onEmojiClick={onEmojiClick}
+                                            // pickerStyle={{ height: '50%' }}
+                                            // disableAutoFocus={false}
+                                            // skinTone={SKIN_TONE_MEDIUM_DARK}
+                                            // groupNames={{ smileys_people: 'PEOPLE' }}
+                                            // native
+                                        />
+                                    </div>
+                                }
                             </div>
-                            <div className="emoji-input">
-                                <img src={emojiIcon}></img>
-                            </div>
-                            <div className="picture-input">
-                                <img src={libraryIcon}></img>
-                            </div>
+
+                            {commentImages.length > 0 &&
+                                <div className = "comment-images">
+                                    {commentImages.map((image) => {
+                                        return <img src = {image} alt = "commentImage"></img>
+                                    })}
+                                </div>
+                            }
                         </div>
                     </section>
                 }

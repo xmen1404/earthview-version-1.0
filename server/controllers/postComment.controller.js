@@ -1,14 +1,15 @@
 const PostCommentModel = require("../models/postComment.model");
 
 module.exports.commentPost = async (req, res) => {
-    const {content} = req.body;
+    const {content, images} = req.body;
     // console.log("check content", content);
     
     try{
         const newComment = new PostCommentModel({
             post: req.params.id,
             user: req.userId,
-            content: content
+            content: content,
+            images: images
         })
 
         await newComment.save();
@@ -27,7 +28,7 @@ module.exports.commentPost = async (req, res) => {
 
 
 module.exports.replyCommentPost = async (req, res) => {
-    const {content} = req.body;
+    const {content, images} = req.body;
     // console.log("check content", content);
     
     try{
@@ -35,6 +36,7 @@ module.exports.replyCommentPost = async (req, res) => {
             post: req.params.postId,
             user: req.userId,
             content: content,
+            images: images,
             parent: req.params.commentId
         })
 

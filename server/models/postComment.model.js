@@ -19,6 +19,11 @@ const postCommentSchema = new Schema({
         type: String,
         required: true
     },
+    images:{
+        type: Array,
+        required: true,
+        default: []
+    },
     likes_count:{
         type: Number,
         required: true,

@@ -116,7 +116,16 @@ const CommentLevel2Item = (props) => {
                         <span className="lv2-comment-author">{props.data.user.name}</span>
                         <span className="lv2-comment-time">{moment(props.data.createdAt).fromNow()}</span>
                     </div>
-                    <div className="lv2-comment-body">{props.data.content}</div>
+                    <div className="lv2-comment-body">
+                        {props.data.content}
+                        {props.data.images && 
+                            <div className = "comment-images">
+                                {props.data.images.map((image) => {
+                                    return <img src = {image} alt = "commentImage"></img>
+                                })}
+                            </div>
+                        }
+                    </div>
                     <div className="lv2-comment-interaction">
                         <div className="lv2-love-button">
                             <img onClick = {likeCommentHandle} src={isLike? redHeartIcon: heartIcon}></img>

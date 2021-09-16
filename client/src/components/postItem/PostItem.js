@@ -410,7 +410,7 @@ const PostItem = (props) => {
                                     />
                                 </div>
                             </div>
-                            <div className="end-line"></div>
+                            {/* <div className="end-line"></div> */}
                         </div>
                     }   
 

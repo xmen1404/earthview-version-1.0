@@ -57,6 +57,22 @@
     font-size: 16px;
 }
 
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-body .comment-images{
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-body .comment-images img{
+    width: 43%;
+    height: 100%;
+    /* flex-basis: 40%; */
+    margin: 0.5rem;
+}
+
+
+
 .lv2-commentItem-container .lv2-background-container .lv2-margin-container .lv2-comment-interaction {
     margin-top: 1rem;
     display: flex;
