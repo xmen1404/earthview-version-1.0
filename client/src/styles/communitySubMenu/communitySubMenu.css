@@ -1,5 +1,9 @@
 
 .community-submenu {
+    position: fixed;
+    width: 30%;
+    right: 5rem;
+    top: 6.5rem;
     flex-basis: 35%;
     flex-shrink: 35%;
     /* background-color: red; */
@@ -16,34 +20,37 @@
     /*background-color: orange;*/
 }
 
-.submenu-container .block {
+.submenu-container .submenu-block {
     /* width: 100%; */
-    border: 2px solid rgb(188, 188, 188);
-    margin-top: 1.4rem;
+    /* border: 2px solid rgb(188, 188, 188); */
+    /* width: 100%; */
+    position: relative;
+    background-color: rgba(256, 256, 256, 0.6);
+    margin-top: 0.7rem;
     border-radius: 10px;
     /* padding: 1.5rem; */
 }
 
-.submenu-container .block:first-child{
-    margin-top: 3rem;
+.submenu-container .submenu-block:first-child{
+    /* margin-top: 2rem; */
     /* padding: 1.2rem; */
     padding: 1.7rem;
 }
 
-.submenu-container .block:nth-child(2){
-  padding: 0.5rem 0 0.6rem 1.7rem;
+.submenu-container .submenu-block:nth-child(2){
+  padding: 1.7rem;
 }
 
-.submenu-container .block:nth-child(3){
+.submenu-container .submenu-block:nth-child(3){
   padding: 0.8rem 0 0.8rem 1.7rem;
 }
 
-.submenu-container .block .icon img{
+.submenu-container .submenu-block .submenu-icon img{
   margin-bottom: -2px;
   /* margin-right: 5px; */
 }
 
-.submenu-container .block .icon{
+.submenu-container .submenu-block .submenu-icon{
   display: inline-block;
   width: 2rem;
 }
@@ -54,30 +61,44 @@
   align-items: center;
 } */
 
-.submenu-container .block .home {
-  color: rgb(39, 89, 93);
-}
-.submenu-container .block .follow-list {
-  margin-top: 0.9rem;
-}
-.submenu-container .block .saved-posts {
-  margin-top: 0.9rem;
-}
 
-.submenu-container .block .post-filter {
+.submenu-container .submenu-block .submenu-innerBlock {
   width: 100%;
 }
-
-.submenu-container .block .top-topic {
+.submenu-container .submenu-block .submenu-innerBlock .submenu-header {
   width: 100%;
+  position: relative;
+  display: flex;
 }
-.submenu-container .block .top-topic .header{    
+.submenu-container .submenu-block .submenu-innerBlock .submenu-header .submenu-text{    
+  font-size: 18px;
+  width: 80%;
+  
 }
-.submenu-container .block .top-topic .body{
+
+.submenu-container .submenu-block .submenu-innerBlock .submenu-header .submenu-extend{    
+  font-size: 14px;
+  width: 20%;
+  color: rgb(112, 168, 231);
+  padding-top: 0.2rem;
+}
+
+.submenu-container .submenu-block .submenu-innerBlock .submenu-header .submenu-extend:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.submenu-container .submenu-block .submenu-innerBlock .submenu-body{
   color:  rgb(102, 102, 102);    
+  margin-top: 1rem;
   /* padding: 0.5rem; */
 }
 
-.submenu-container .block .top-topic .body .topic {
-    margin-top: 0.7rem;
+.submenu-container .submenu-block .submenu-innerBlock .submenu-body .submenu-topic {
+    margin-top: 0.5rem;
+    font-size: 16px;
+}
+
+.submenu-container .submenu-block .submenu-innerBlock .submenu-body .submenu-userBadge {
+  margin-top: 1.5rem;
 }

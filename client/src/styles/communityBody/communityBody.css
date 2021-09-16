@@ -1,12 +1,25 @@
 .community-body{
     /* display: flex;
     flex-direction: row; */
+    position: relative;
 
     padding: 3rem 4rem;
+    display: flex;
+    flex-direction: row;
     /* height: 90vh; */
 
     /* padding-top: 5rem; */
     /* overflow-y: hidden; */
+    /* background-color:cadetblue; */
+}
+
+.test {
+    /* flex-grow: 1; */
+    /* width: 50%; */
+    position: fixed;
+    background-color: burlywood;
+    width: 25%;
+    right: 5rem;
 }
 
 .fixed-background{

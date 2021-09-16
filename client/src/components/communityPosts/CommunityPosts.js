@@ -17,7 +17,10 @@ const CommunityPosts = () => {
         {/* container */}
         {
             posts.map((post) => {
-                return <PostItem key = {post._id} data = {post} updatePostIncrement = {updatePostIncrement} openUserProfile={false}></PostItem>
+                return <PostItem key = {post._id} 
+                data = {post} 
+                updatePostIncrement = {updatePostIncrement} openUserProfile={false}
+                ></PostItem>
             })
         }
     </div>

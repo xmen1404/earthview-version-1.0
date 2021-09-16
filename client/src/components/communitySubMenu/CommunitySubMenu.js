@@ -1,51 +1,76 @@
 import "../../styles/communitySubMenu/communitySubMenu.css";
+import UserBadge from "../userBadge/UserBadge";
 import bookmark_icon from "../../assets/bookmark_icon.png";
 import follow_icon from "../../assets/follow_icon.png";
 import home_icon from "../../assets/home_icon.png";
+import userImgTemp from "../../assets/Icon_2.jpg";
 
 
 const CommunitySubMenu = () => {
     return (
         <div className = "community-submenu">
             <div className="submenu-container">
-                <div className="block">
-                    <div className="home">
-                        <span className="icon"> <img src={home_icon} alt="home-logo"/> </span>
-                        <span className="text">Dành cho bạn</span>
-                    </div>
-
-                    <div className="follow-list">
-                        <span className="icon"> <img src={follow_icon} alt="follow-logo" /> </span>
-                        <span className="text">Đang follow</span>
-                    </div>
-
-                    <div className="saved-posts">
-                        <span className="icon"> <img src={bookmark_icon} alt="save-logo" /> </span>
-                        <span className="text">Đã lưu</span>
-                    </div>
-                </div>
-
-                <div className="block">
-                    <div className="post-filter">
-                        Lọc bài viết
+                <div className="submenu-block">
+                    <div className="submenu-innerBlock">
+                        <div className="submenu-header">
+                            <span className="submenu-text">Chủ đề đang được quan tâm:</span>
+                            <span className="submenu-extend">Xem thêm</span>
+                        </div>
+                        <div className="submenu-body">
+                            <div className="submenu-topic">1. #thiennhien</div>
+                            <div className="submenu-topic">2. #biendoikhihau</div>
+                            <div className="submenu-topic">3. #lulutchauau</div>
+                            <div className="submenu-topic">4. #COP26</div>
+                            <div className="submenu-topic">5. #songnhiet</div>
+                        </div>
                     </div>
                 </div>
-
-                <div className="block">
-                <div className="top-topic">
-                    <div className="header">Quan tâm nhiều:</div>
-                    <div className="body">
-                        <div className="topic">#thiennhien</div>
-                        <div className="topic">#biendoikhihau</div>
-                        <div className="topic">#lulutchauau</div>
-                        <div className="topic">#COP26</div>
-                        <div className="topic">#songnhiet</div>
-                        <div className="topic">#gretathunberg</div>
-                        <div className="topic">#earthview</div>
+                <div className="submenu-block">
+                    <div className="submenu-innerBlock">
+                        <div className="submenu-header">
+                            <span className="submenu-text">Gợi ý theo dõi: </span>
+                            <span className="submenu-extend">Xem thêm</span>
+                        </div>
+                        <div className="submenu-body">
+                            <div className="submenu-userBadge">
+                                <UserBadge data={{
+                                    user : {
+                                        name: "Scooby Doo", 
+                                        profilePicture: userImgTemp, 
+                                        actHistory: "He stole your toys"
+                                    }
+                                }}></UserBadge>
+                            </div>
+                            <div className="submenu-userBadge">
+                                <UserBadge data={{
+                                    user : {
+                                        name: "Scooby Doo", 
+                                        profilePicture: userImgTemp, 
+                                        actHistory: "He stole your toys"
+                                    }
+                                }}></UserBadge>
+                            </div>
+                            <div className="submenu-userBadge">
+                                <UserBadge data={{
+                                    user : {
+                                        name: "Scooby Doo", 
+                                        profilePicture: userImgTemp, 
+                                        actHistory: "He stole your toys"
+                                    }
+                                }}></UserBadge>
+                            </div>
+                            <div className="submenu-userBadge">
+                                <UserBadge data={{
+                                    user : {
+                                        name: "Scooby Doo", 
+                                        profilePicture: userImgTemp, 
+                                        actHistory: "He stole your toys"
+                                    }
+                                }}></UserBadge>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>
-
             </div> 
         </div>
     )
