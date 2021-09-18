@@ -107,11 +107,14 @@ io.on("connection", (socket) => {
     })
 
     socket.on("ClientSendServer-comment", (type, commentId) => {
-        console.log("client send commentId: ", type, commentId);
+        // console.log("client send commentId: ", type, commentId);
         io.sockets.in(socket.postId).emit("ServerSendClient-comment", type, commentId);
     })
 
 
+    socket.on("ClientSendServer-reply", (commentId, reply) => {
+        io.sockets.in(socket.postId).emit("ServerSendClient-reply", commentId, reply);
+    })
 
 
 

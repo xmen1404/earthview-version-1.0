@@ -500,4 +500,18 @@
     /* z-index: 99999; */
     /* height: 100%; */
 
+    /* visibility: hidden;
+    opacity: 0; */
+    transition: all 0.5s ease;
+
+}
+
+.comment-hide{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.comment-show{
+    visibility: visible;
+    opacity: 1;
 }

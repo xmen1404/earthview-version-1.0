@@ -1,14 +1,15 @@
 const PostCommentModel = require("../models/postComment.model");
 
 module.exports.commentPost = async (req, res) => {
-    const {content} = req.body;
+    const {content, images} = req.body;
     // console.log("check content", content);
     
     try{
         const newComment = new PostCommentModel({
             post: req.params.id,
             user: req.userId,
-            content: content
+            content: content,
+            images: images
         })
 
         await newComment.save();
@@ -27,7 +28,7 @@ module.exports.commentPost = async (req, res) => {
 
 
 module.exports.replyCommentPost = async (req, res) => {
-    const {content} = req.body;
+    const {content, images} = req.body;
     // console.log("check content", content);
     
     try{
@@ -35,10 +36,13 @@ module.exports.replyCommentPost = async (req, res) => {
             post: req.params.postId,
             user: req.userId,
             content: content,
+            images: images,
             parent: req.params.commentId
         })
 
         await newComment.save();
+
+        await newComment.populate('user', ['name', 'profilePicture']).execPopulate();
 
         res.json({success: true, message: "comment successfully", comment: newComment});
 
@@ -70,7 +74,7 @@ module.exports.getPostComment = async (req, res) => {
 module.exports.getReplyPostComment = async (req, res) => {
     try{
         const condition = {post: req.params.postId, parent: req.params.commentId};
-        const comments = await PostCommentModel.find(condition).sort({ _id: -1 })
+        const comments = await PostCommentModel.find(condition)
                                         .populate('user', ['name', 'profilePicture'])
                                        
         res.json({success: true, replyComments: comments});

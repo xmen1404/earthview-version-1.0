@@ -7,14 +7,14 @@ body{
 	/* overflow-y: scroll; */
 	/* width: 100vw; */
 	/* overflow: hidden; */
-	overscroll-behavior: contain;
+	/* overscroll-behavior: contain;
     -ms-overflow-style: none;  
-    scrollbar-width: none;
+    scrollbar-width: none; */
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     display: none;
-}
+} */
 
 h1{
 	font-size: 3.7rem;
