@@ -10,6 +10,7 @@ import Home from "./pages/users/Home";
 import Community from "./pages/users/Community";
 import Auth from "./pages/users/Auth";
 import AuthContextProvider from './contexts/AuthContext';
+import ControllerContextProvider from './contexts/ControllerContext';
 import CategoryContextProvider from './contexts/CategoryContext';
 import BigCategoryContextProvider from './contexts/BigCategoryContext';
 import SeriesContextProvider from './contexts/SeriesContext';
@@ -42,40 +43,42 @@ function App() {
   }
 
   return (
-    <PostContextProvider>
-      <PostLikeContextProvider>
-        <AuthContextProvider>
-          <PostCommentContextProvider>         
-            <CommentLikeContextProvider>
-              <TypeContextProvider>
-                <BigCategoryContextProvider>
-                  <CategoryContextProvider>
-                    <SeriesContextProvider>
-                      <NewsContextProvider>
-                        <Router>
-                          <Switch>
-                            <Route path = "/admin" exact component = {Admin}/>
-                            <Route path = "/admin/news" exact component = {NewsManagement}/>
-                            <Route path = "/admin/news/create" exact component = {CreateNews}/>
-                            <Route path = "/admin/news/create/:id" exact component = {EditNews}/>
-                            <Route path = "/admin/categories" exact component = {CategoryManagement}></Route>
-                            <Route exact path='/login' component={Login}/>
-                            <Route exact path='/' component={Community}/>
-                            {/* <Route exact path='/login' render={props => <Auth {...props} authRoute='login'/>} />
-                            <Route exact path='/register' render={props => <Auth {...props} authRoute='register'/>} /> */}
-                            <Route path = "/news/:id" exact component = {News}/>
-                          </Switch>
-                        </Router>
-                      </NewsContextProvider>
-                    </SeriesContextProvider>
-                  </CategoryContextProvider>
-                </BigCategoryContextProvider>
-              </TypeContextProvider>
-            </CommentLikeContextProvider>  
-          </PostCommentContextProvider>
-        </AuthContextProvider>
-      </PostLikeContextProvider>  
-    </PostContextProvider>
+    <ControllerContextProvider>
+      <PostContextProvider>
+        <PostLikeContextProvider>
+          <AuthContextProvider>
+            <PostCommentContextProvider>         
+              <CommentLikeContextProvider>
+                <TypeContextProvider>
+                  <BigCategoryContextProvider>
+                    <CategoryContextProvider>
+                      <SeriesContextProvider>
+                        <NewsContextProvider>
+                          <Router>
+                            <Switch>
+                              <Route path = "/admin" exact component = {Admin}/>
+                              <Route path = "/admin/news" exact component = {NewsManagement}/>
+                              <Route path = "/admin/news/create" exact component = {CreateNews}/>
+                              <Route path = "/admin/news/create/:id" exact component = {EditNews}/>
+                              <Route path = "/admin/categories" exact component = {CategoryManagement}></Route>
+                              <Route exact path='/login' component={Login}/>
+                              <Route exact path='/' component={Community}/>
+                              {/* <Route exact path='/login' render={props => <Auth {...props} authRoute='login'/>} />
+                              <Route exact path='/register' render={props => <Auth {...props} authRoute='register'/>} /> */}
+                              <Route path = "/news/:id" exact component = {News}/>
+                            </Switch>
+                          </Router>
+                        </NewsContextProvider>
+                      </SeriesContextProvider>
+                    </CategoryContextProvider>
+                  </BigCategoryContextProvider>
+                </TypeContextProvider>
+              </CommentLikeContextProvider>  
+            </PostCommentContextProvider>
+          </AuthContextProvider>
+        </PostLikeContextProvider>  
+      </PostContextProvider>
+    </ControllerContextProvider>
   )
 }
 

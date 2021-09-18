@@ -1,15 +1,17 @@
 import "../../styles/communityBody/communityBody.css";
 import CommunityPosts from "../communityPosts/CommunityPosts";
 import CommunitySubMenu from "../communitySubMenu/CommunitySubMenu";
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 // import CommunitySubMenu from "../communitySubMenu/CommunitySubMenu";
 import CommunityTools from "../communityTools/CommunityTools";
+import {ControllerContext} from "../../contexts/ControllerContext";
 
 import Background from "../../assets/theme/Background.png";
 
 const CommunityBody = () => {
+    const {controllerState: {landing}} = useContext(ControllerContext);
 
-    const [openSubMenu, setOpenSubMenu] = useState(true);
+    // const [openSubMenu, setOpenSubMenu] = useState(true);
 
     return (
         <div className = "community-body fixed-background" 
@@ -17,9 +19,9 @@ const CommunityBody = () => {
         >
             {/* <img className = "community-body-background"/> */}
             <CommunityPosts
-                openSubMenu={openSubMenu}
+                // openSubMenu={openSubMenu}
             ></CommunityPosts>
-            {openSubMenu &&
+            {landing &&
                 <CommunitySubMenu></CommunitySubMenu>
             }
             {/* <CommunitySubMenu></CommunitySubMenu> */}

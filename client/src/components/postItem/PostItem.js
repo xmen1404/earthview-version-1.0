@@ -1,6 +1,7 @@
 import {useState, useContext, useEffect, useRef} from 'react';
 import { PostLikeContext } from '../../contexts/PostLikeContext';
 import { AuthContext } from "../../contexts/AuthContext";
+import { ControllerContext } from '../../contexts/ControllerContext';
 
 import "../../styles/postItem/postItem.css";
 import Button from "../button/Button";
@@ -17,6 +18,7 @@ import moment from 'moment';
 import 'moment/locale/vi';
 import CommentSection from "../commentSection/CommentSection";
 
+
 const PostItem = (props) => {
     // console.log(props.data);
     const [openFullPost, setOpenFullPost] = useState(false);
@@ -31,6 +33,8 @@ const PostItem = (props) => {
 
     const {authState: {isAuthenticated}, redirectToLogin} = useContext(AuthContext);
     const {likePost, unlikePost, checkLike} = useContext(PostLikeContext);
+
+    const {displayFullPost, hideFullPost} = useContext(ControllerContext);
 
     // const myRef = useRef(null)
 
@@ -71,6 +75,7 @@ const PostItem = (props) => {
 
         if(!openFullPost){
             setOpenFullPost(true);
+            displayFullPost();
         }
 
         // if(!openComment){
@@ -152,6 +157,10 @@ const PostItem = (props) => {
 
         if(openFullPost){
             setOpenComment(false);
+            hideFullPost();
+        }
+        else{
+            displayFullPost();
         }
 
         setOpenFullPost(!openFullPost);

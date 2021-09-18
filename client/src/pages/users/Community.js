@@ -5,12 +5,11 @@ import UserProfile from "../../components/userProfile/UserProfile.js";
 import "../../styles/pages/users/community.css";
 import CommunityBody from "../../components/communityBody/CommunityBody";
 import React, { useState, useContext } from "react";
-import {AuthContext} from "../../contexts/AuthContext";
 
 
 const Community = () => {
     // javaScript here
-    const {authState: {flagShowLoginPanel}} = useContext(AuthContext);
+    // const {authState: {flagShowLoginPanel}} = useContext(AuthContext);
 
     // const [flagShowLoginPanel, setFlagShowLoginPanel] = useState(false);
     const [isCreatePost, setIsCreatePost] = useState(false);
@@ -45,9 +44,9 @@ const Community = () => {
 
     return (
         <div className = "community">
-            {flagShowLoginPanel &&
+            {/* {flagShowLoginPanel &&
                 <LoginPanel/>
-            }
+            } */}
 
             {isCreatePost &&
                 <NewPost closeCreatePost = {createPost}></NewPost>
