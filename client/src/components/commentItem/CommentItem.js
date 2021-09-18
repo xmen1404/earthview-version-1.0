@@ -210,7 +210,7 @@ const CommentItem = (props) => {
 
     useEffect(() => {
         if(replyComment){
-            document.getElementById("replyInput").focus();
+            document.getElementById("replyInput" + props.data._id).focus();
         }
     }, [replyComment]);
 
@@ -357,7 +357,7 @@ const CommentItem = (props) => {
                                 <div className="text-input">
                                     <input 
                                         type="text" 
-                                        id = "replyInput"
+                                        id = {"replyInput" + props.data._id}
                                         placeholder="Chia sẻ cảm nghĩ của bạn ..." 
                                         value = {content} 
                                         onChange = {(event) => handleChange(event)}

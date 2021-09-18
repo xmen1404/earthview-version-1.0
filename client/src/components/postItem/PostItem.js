@@ -36,7 +36,7 @@ const PostItem = (props) => {
 
     const {displayFullPost, hideFullPost} = useContext(ControllerContext);
 
-    // const myRef = useRef(null)
+    const myRef = useRef(null)
 
     // useEffect(() => {
     //     if(loadOpenComment) {
@@ -64,25 +64,17 @@ const PostItem = (props) => {
     }
 
     const OpenCommentSection = () => {
-        // if(document.body.style.overflowY === "hidden"){
-        //     document.body.style.overflowY = "scroll";
-        // }
-        // else{
-        //     document.body.style.overflowY = "hidden";
-        // }
-
-        // setPostContainerClass("post-container leftAlign");
 
         if(!openFullPost){
             setOpenFullPost(true);
             displayFullPost();
         }
 
-        // if(!openComment){
-        //     // myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        //     // window.scrollTo(1000, myRef.current.offsetTop);
-        //     window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop - 100 })
-        // }
+        if(!openComment){
+            // myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // window.scrollTo(1000, myRef.current.offsetTop);
+            window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop -50 })
+        }
     
         setOpenComment(!openComment);
 
@@ -161,6 +153,7 @@ const PostItem = (props) => {
         }
         else{
             displayFullPost();
+            window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop -50 })
         }
 
         setOpenFullPost(!openFullPost);
@@ -329,7 +322,7 @@ const PostItem = (props) => {
     }
 
     return (
-        <div className = "community-postitem" onScroll = {(event) => {handlePostScroll(event)}}>
+        <div className = "community-postitem" ref = {myRef} onScroll = {(event) => {handlePostScroll(event)}}>
             {/* {author(props.data.createdAt, "black", true, props.openUserProfile ? 2 : 0)} */}
             {!props.openUserProfile && 
                 <div className="tools">
