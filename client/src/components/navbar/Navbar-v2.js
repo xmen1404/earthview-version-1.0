@@ -1,18 +1,20 @@
 import "../../styles/navbar/navbar.css";
 import Button from '../button/Button'
 
-import {useContext} from 'react';
-import {AuthContext} from "../../contexts/AuthContext";
+import { useContext } from 'react';
+import { AuthContext } from "../../contexts/AuthContext";
+import { ControllerContext } from '../../contexts/ControllerContext';
 // import {apiUrl, LOCAL_STORAGE_TOKEN_NAME} from '../../contexts/constants';
 
 import chat_icon from "../../assets/chat_icon.png";
 import notification_icon from "../../assets/notification_icon.png";
 import write_icon from "../../assets/write_icon.png";
+import gallery_icon from "../../assets/navbar/gallery_icon.png";
 
 const Navbar = (props) => {
 
     const {authState: {authLoading, isAuthenticated, user}, redirectToLogin} = useContext(AuthContext);
-
+    const { controllerState: {displayMessage}, showMessage, hideMessage } = useContext(ControllerContext);
     // window.onscroll = function() {scrollFunction()};
 
     // function scrollFunction() {
@@ -42,6 +44,9 @@ const Navbar = (props) => {
                     </div>
 
                     <div className = "center">
+                        <div className = "navbar-item">Dành cho bạn</div>
+                        <div className = "navbar-item">Thịnh Hành</div>
+                        <div className = "navbar-item">Đang theo dõi</div>
                     </div>
 
 
@@ -82,11 +87,17 @@ const Navbar = (props) => {
                             </div>
 
                             <div className = "chat_icon icon">
-                                <img src = {chat_icon}></img>
+                                <img src = {chat_icon} onClick = {!displayMessage? showMessage : hideMessage}></img>
+                                <div className = "unread">2</div>
                             </div>
 
                             <div className = "notification_icon icon">
                                 <img src = {notification_icon}></img>
+                                <div className = "unread">2</div>
+                            </div>
+
+                            <div className = "gallery_icon icon">
+                                <img src = {gallery_icon}></img>
                             </div>
 
                             <div className = "profilepicture icon">

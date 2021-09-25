@@ -35,7 +35,7 @@ const CommentSection = (props) => {
     useEffect(() => {
         async function getAllComment() {
             const res = await getPostComment(props.postId);
-            console.log("debug comment list", res);    
+            // console.log("debug comment list", res);    
             setCommentList(res.data.comments);
         }
         
@@ -66,7 +66,7 @@ const CommentSection = (props) => {
 
 
         newSocket.on("ServerSendClient", (comment) => {
-            console.log("sent from server: " + comment);
+            // console.log("sent from server: " + comment);
             // document.getElementById("comment-abcd").innerHTML =
             // `<div>sent from server ${message}</div>`;
             setCommentList(curComments => [comment, ...curComments]);
@@ -99,7 +99,7 @@ const CommentSection = (props) => {
 
     const handleOnKeyDown = (event) => {
         if (event.keyCode === 13) {
-            console.log('enter');
+            // console.log('enter');
             submitComment();
         }
     }
@@ -107,7 +107,7 @@ const CommentSection = (props) => {
     const submitComment = async () => {
 
         if(!isAuthenticated){
-            console.log("hello");
+            // console.log("hello");
             // showLoginPanel();
             redirectToLogin();
             return;
@@ -145,7 +145,7 @@ const CommentSection = (props) => {
     const handleChangeCommentImages = async (event) => {
         try{
 
-            console.log("hello");
+            // console.log("hello");
 
             const url = apiUrl + '/uploads';
             // const header = "Bearer " + localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)
@@ -156,7 +156,7 @@ const CommentSection = (props) => {
 
             const res = await axios.post(url, formData);
 
-            console.log("check res", res.data.url);
+            // console.log("check res", res.data.url);
 
             setCommentImages(curCommentImages => [...curCommentImages, res.data.url])
 

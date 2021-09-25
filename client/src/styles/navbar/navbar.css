@@ -61,56 +61,38 @@
 
 
 .navbar-container .navbar-header .navbar .center{
-    flex-basis: 50%;
-    /* height: 100%; */
+    /* flex-basis: 50%; */
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    /* align-items: center; */
-    /* padding-left: 3rem; */
-    /* background-color: green; */
-    /* padding-top: 2rem; */
+    /* padding-left: 2rem; */
+    /* flex-direction: row;
+    justify-content: flex-start; */
+    
 }
 
 
-.navbar-container .navbar-header .navbar .center .item{
+.navbar-container .navbar-header .navbar .center .navbar-item{
     position: relative;
+    /* height: 100%; */
+    border-bottom: 1px solid red;
     /* padding: 2rem 3rem 0 0; */
-    margin: 0 2rem 0 0;
+    margin: 0.3rem 0 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+    font-family: Lato;
+    font-style: normal;
+    /* font-weight: bold; */
+    font-size: 1.2rem;
+    /* line-height: 24px; */
+    /* identical to box height, or 133% */
+    letter-spacing: 0.15px;
 }
 
-.navbar-container .navbar-header .navbar .center .item span{
-    /* color: #ffffff; */
-    /* font-size: 1.2rem; */
-}
 
-.navbar-container .navbar-header .navbar .center .item span:hover{
-    color: #cccccc;
-    cursor: pointer;
-}
-
-.relative{
-    position: relative;
-}
-
-
-.navbar-container .navbar-header .navbar .center .border{
-    /* height: 10%; */
-    /* margin: 0 auto; */
-    /* margin-top: 0.3rem; */
-    /* padding-top: 0.3rem; */
-    width: 23%;
-    position: absolute;
-    bottom: -0.3rem;
-
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    text-align: center;
-
-    background-color: #ffffff;
-}
 
 
 .navbar-container .navbar-header .navbar .right{
@@ -128,8 +110,27 @@
 }
 
 .navbar-container .navbar-header .navbar .right .icon{
-    margin-left: 1rem;
+    margin-left: 1.5rem;
+    position: relative;
     /* margin-bottom: -5px; */
+}
+
+
+.navbar-container .navbar-header .navbar .right .icon .unread{
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    background: #D74747;
+    border-radius: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    /* padding: 0.01rem 0.01rem 0.03rem 0.01rem; */
+    padding-bottom: 0.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
 }
 
 .navbar-container .navbar-header .navbar .right .write_icon{
@@ -140,9 +141,11 @@
 } 
 
 
-.navbar-container .navbar-header .navbar .right .write_icon:hover{
+.navbar-container .navbar-header .navbar .right .icon:hover{
     cursor: pointer;
     opacity: 0.8;
+    box-shadow: 2px 2px 5px #00000050;
+    /* border: 3px solid #000000; */
 }
 
 
@@ -152,7 +155,7 @@
 
 .navbar-container .navbar-header .navbar .right .profilepicture img{
     border-radius: 50%;
-    height: 3rem;
+    height: 2.5rem;
 }
 
 /* the following code not use -> delete? */

@@ -14,3 +14,8 @@ export const HIDE_MESSAGE = "HIDE_MESSAGE";
 
 export const SHOW_FULL_POST = "SHOW_FULL_POST";
 export const HIDE_FULL_POST = "HIDE_FULL_POST";
+
+export const SHOW_POST_COMMENT = "SHOWL_POST_COMMENT";
+export const HIDE_POST_COMMENT = "HIDE_POST_COMMENT";
+
+export const SWITCH_POST = "SWITCH_POST"

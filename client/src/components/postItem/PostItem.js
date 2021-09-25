@@ -31,10 +31,10 @@ const PostItem = (props) => {
 
     const [currentComment, setCurrentComment] = useState(props.data.comments_count);
 
+
     const {authState: {isAuthenticated}, redirectToLogin} = useContext(AuthContext);
     const {likePost, unlikePost, checkLike} = useContext(PostLikeContext);
-
-    const {displayFullPost, hideFullPost} = useContext(ControllerContext);
+    const {controllerState: {displayPostComment, currentPost}, displayFullPost, hideFullPost, switchCurrentPost} = useContext(ControllerContext);
 
     const myRef = useRef(null)
 
@@ -65,9 +65,10 @@ const PostItem = (props) => {
 
     const OpenCommentSection = () => {
 
-        if(!openFullPost){
-            setOpenFullPost(true);
-            displayFullPost();
+        if(currentPost !== ("post-"+props.data._id)){
+            // setOpenFullPost(true);
+            switchCurrentPost("post-"+props.data._id);
+            // displayFullPost();
         }
 
         if(!openComment){
@@ -75,8 +76,13 @@ const PostItem = (props) => {
             // window.scrollTo(1000, myRef.current.offsetTop);
             window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop -50 })
         }
-    
-        setOpenComment(!openComment);
+        
+        if(currentPost !== ("post-"+props.data._id)){
+            setOpenComment(true);
+        }
+        else{
+            setOpenComment(!openComment);
+        }
 
         // setLoadOpenComment(true);
     }
@@ -131,34 +137,30 @@ const PostItem = (props) => {
     }
 
     const switchOpenFullPost = () => {
-        // if(document.body.style.overflowY === "hidden"){
-        //     document.body.style.overflowY = "scroll";
-        //     setPostContainerClass("post-container");
-        // }
-        // else{
-        //     document.body.style.overflowY = "hidden";
-        // }
-
-
-        // if(openFullPost) {
-        //     document.getElementById('post-container').style.transition = null;
-        //     document.getElementById('post-container').style.marginLeft = null;
-        //     if(openComment) 
-        //         setOpenComment(false);
-        // }
-
-        if(openFullPost){
-            setOpenComment(false);
-            hideFullPost();
+        if(openComment){
+            setOpenComment(false)
         }
-        else{
-            displayFullPost();
+
+        if(currentPost !== "post-" + props.data._id){
             window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop -50 })
         }
 
-        setOpenFullPost(!openFullPost);
+        console.log("dubuging...")
+        switchCurrentPost("post-"+props.data._id)
+        
+        // setOpenFullPost(!openFullPost);
 
         
+    }
+
+
+    const CloseFullPost = () => {
+    
+        if(openComment){
+            setOpenComment(false);
+        }
+
+        switchCurrentPost("");
     }
 
     const marginTransition = () => {
@@ -292,32 +294,34 @@ const PostItem = (props) => {
         };
     }
 
-    let closePost;
+    // let closePost;
 
     const handlePostScroll = (event) => {
-        if(openFullPost){
+        if(currentPost === ("post-"+props.data._id)){
             // console.log("scrolling....");
-            const target = event.target;
+            window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop -50 })
+            
+            // const target = event.target;
             
             // console.log("check", target.scrollHeight - target.scrollTop, target.clientHeight);
 
-            if(target.scrollHeight - target.scrollTop - 3 < target.clientHeight){
-                // console.log("reached bottom");
+            // if(target.scrollHeight - target.scrollTop - 3 < target.clientHeight){
+            //     // console.log("reached bottom");
 
-                clearTimeout(closePost);
-                closePost = setTimeout(() => {
-                    // console.log("closed");
-                    switchOpenFullPost();
-                }, 10000);
-            }
+            //     // clearTimeout(closePost);
+            //     // closePost = setTimeout(() => {
+            //     //     // console.log("closed");
+            //     //     switchOpenFullPost();
+            //     // }, 10000);
+            // }
 
-            if(target.scrollHeight - target.scrollTop > target.clientHeight + 5 ){
-                // console.log("closing");
-                clearTimeout(closePost);
-                // if(closePost){
-                //     clearTimeout(closePost);
-                // }
-            }
+            // if(target.scrollHeight - target.scrollTop > target.clientHeight + 5 ){
+            //     // console.log("closing");
+            //     clearTimeout(closePost);
+            //     // if(closePost){
+            //     //     clearTimeout(closePost);
+            //     // }
+            // }
         }
     }
 
@@ -326,7 +330,8 @@ const PostItem = (props) => {
             {/* {author(props.data.createdAt, "black", true, props.openUserProfile ? 2 : 0)} */}
             {!props.openUserProfile && 
                 <div className="tools">
-                    {openFullPost &&
+                    {/* {openFullPost && */}
+                    { (currentPost === ("post-" + props.data._id)) &&
                         <div className="cancel">
                             <RoundButton 
                                 content = "Thu nhỏ"
@@ -335,7 +340,7 @@ const PostItem = (props) => {
                                 backgroundSize = "20%"
                                 radius = "2.5rem"
                                 backgroundColor = "#F5FFFFB2"
-                                handleClick = {switchOpenFullPost}
+                                handleClick = {CloseFullPost}
                             ></RoundButton>
                         </div>
                     }
@@ -382,7 +387,8 @@ const PostItem = (props) => {
                 </div>
 
                 <div className="body-container"> 
-                    {!openFullPost &&
+                    {/* {!openFullPost && */}
+                    {(currentPost !== ("post-" + props.data._id)) &&
                         <div className="body" 
                             style = {userProfilePostItemFlexBasis}
                         >
@@ -417,7 +423,8 @@ const PostItem = (props) => {
                     }   
 
 
-                    {openFullPost && 
+                    {/* {openFullPost &&  */}
+                    {(currentPost === ("post-" + props.data._id)) &&
                         <div className="full-body">
                             <div className="text" style = {{whiteSpace: "pre-wrap"}}>
                                 {props.data.content}
@@ -478,7 +485,7 @@ const PostItem = (props) => {
                 </div>
             } */}
 
-            <div id="commentSection" className = {openComment ? "comment-show": "comment-hide"}>
+            <div id="commentSection" className = {(openComment && displayPostComment && (currentPost === ("post-" + props.data._id))) ? "comment-show": "comment-hide"}>
                 <CommentSection increaseCommentCount = {increaseCommentCount}  updateCommentCount = {updateCommentCount} postId = {props.data._id} />
             </div>
         </div>
