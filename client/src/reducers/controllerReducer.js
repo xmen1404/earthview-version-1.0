@@ -1,4 +1,8 @@
-import { SHOW_MESSAGE, HIDE_MESSAGE, SHOW_FULL_POST, HIDE_FULL_POST, SHOW_POST_COMMENT, HIDE_POST_COMMENT, SWITCH_POST } from "./constants"
+import { 
+        SHOW_MESSAGE, HIDE_MESSAGE, SHOW_FULL_POST, 
+        HIDE_FULL_POST, SHOW_POST_COMMENT, HIDE_POST_COMMENT, 
+        SWITCH_POST, CLOSE_NAVBAR, OPEN_NAVBAR
+    } from "./constants"
 
 export const controllerReducer = (state, action) => {
     const {type, payload} = action 
@@ -38,6 +42,23 @@ export const controllerReducer = (state, action) => {
                 currentPost: payload.postId,
                 landing: payload.postId !== "" ? false : true
             }
+        case CLOSE_NAVBAR:
+            return{
+                ...state,
+                displayMessage: false,
+                // displayFullPost: false,
+                landing: false,
+                displayPostComment: true,
+                isOpenNavbar: false
+            };
+        case OPEN_NAVBAR:
+            return{
+                ...state,
+                landing: true,
+                displayPostComment: false,
+                isOpenNavbar: true
+            };
+        
         // case SHOW_POST_COMMENT:
         //     return{
         //         ...state,

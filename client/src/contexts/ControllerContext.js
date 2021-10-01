@@ -1,7 +1,11 @@
 import { createContext, useReducer } from "react";
 import { controllerReducer } from "../reducers/controllerReducer";
 import { apiUrl } from "./constants";
-import { SHOW_MESSAGE, HIDE_MESSAGE, SHOW_FULL_POST, HIDE_FULL_POST, SHOW_POST_COMMENT, HIDE_POST_COMMENT, SWITCH_POST} from "../reducers/constants";
+import { 
+        SHOW_MESSAGE, HIDE_MESSAGE, SHOW_FULL_POST, 
+        HIDE_FULL_POST, SHOW_POST_COMMENT, HIDE_POST_COMMENT, 
+        SWITCH_POST, CLOSE_NAVBAR, OPEN_NAVBAR
+    } from "../reducers/constants";
 import axios from "axios";
 
 export const ControllerContext = createContext();
@@ -12,7 +16,8 @@ const ControllerContextProvider = ({children}) => {
         displayFullPost: false,
         displayPostComment: true,
         landing: true,
-        currentPost: ""
+        currentPost: "",
+        isOpenNavbar: true,
     })
 
     const showMessage = () => {
@@ -64,8 +69,24 @@ const ControllerContextProvider = ({children}) => {
     //     })
     // }
 
+    const closeNavbar = () => {
+        dispatch({
+            type: CLOSE_NAVBAR,
+        })
+    }
 
-    const controllerContextData = {controllerState, showMessage, hideMessage, displayFullPost, hideFullPost, switchCurrentPost };
+    const openNavbar = () => {
+        dispatch({
+            type: OPEN_NAVBAR,
+        })
+    }
+
+
+    const controllerContextData = {
+        controllerState, showMessage, hideMessage, 
+        displayFullPost, hideFullPost, switchCurrentPost,
+        closeNavbar, openNavbar
+    };
 
     return(
         <ControllerContext.Provider value = {controllerContextData}>

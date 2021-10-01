@@ -1,7 +1,8 @@
 import "../../styles/navbar/navbar.css";
 import Button from '../button/Button'
 
-import { useContext } from 'react';
+// import { useLocation } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from "../../contexts/AuthContext";
 import { ControllerContext } from '../../contexts/ControllerContext';
 // import {apiUrl, LOCAL_STORAGE_TOKEN_NAME} from '../../contexts/constants';
@@ -10,12 +11,17 @@ import chat_icon from "../../assets/chat_icon.png";
 import notification_icon from "../../assets/notification_icon.png";
 import write_icon from "../../assets/write_icon.png";
 import gallery_icon from "../../assets/navbar/gallery_icon.png";
+import right_arrow from "../../assets/navbar/right_arrow.png"
+import left_arrow from "../../assets/navbar/left_arrow.png"
 
 const Navbar = (props) => {
 
     const {authState: {authLoading, isAuthenticated, user}, redirectToLogin} = useContext(AuthContext);
-    const { controllerState: {displayMessage}, showMessage, hideMessage } = useContext(ControllerContext);
+    const { controllerState: { displayMessage, isOpenNavbar }, showMessage, hideMessage, closeNavbar, openNavbar } = useContext(ControllerContext);
     // window.onscroll = function() {scrollFunction()};
+
+    // const [isOpenNavbar, setIsOpenNavbar] = useState(true);
+
 
     // function scrollFunction() {
     //     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -34,6 +40,24 @@ const Navbar = (props) => {
     //     }
     // }
 
+    // useEffect(() => {
+    //     const location = useLocation(); 
+    //     console.log("đang ở path", location.pathname)
+    // })
+
+    // const location = useLocation(); 
+    // console.log("đang ở path", location.pathname);
+
+    const switchOpenNavbar = () => {
+        if(isOpenNavbar){
+            closeNavbar();
+        }
+        else{
+            openNavbar();
+        }
+    }
+
+
     return (
         <div className = "navbar-container">
             <div className = "tmpnavbar-header"></div>
@@ -45,7 +69,7 @@ const Navbar = (props) => {
 
                     <div className = "center">
                         <div className = "navbar-item">Dành cho bạn</div>
-                        <div className = "navbar-item">Thịnh Hành</div>
+                        <div className = "navbar-item">Khám phá</div>
                         <div className = "navbar-item">Đang theo dõi</div>
                     </div>
 
@@ -82,7 +106,38 @@ const Navbar = (props) => {
 
                     {(isAuthenticated && user) && 
                         <div className = "right">
-                            <div className = "write_icon icon" onClick = {() => props.createPost()}>
+                            {!isOpenNavbar &&
+                                <div className = "total-unread">6</div>
+                            }
+
+                            <div className = "close_navbar">
+                                <img src = {isOpenNavbar ? right_arrow: left_arrow} onClick = {switchOpenNavbar}></img>
+                            </div>
+
+
+                            {isOpenNavbar &&
+                                <div className = "navbar-tools">
+                                    <div className = "write_icon icon" onClick = {() => props.createPost()}>
+                                        <img src = {write_icon}></img>
+                                    </div>
+
+                                    <div className = "chat_icon icon">
+                                        <img src = {chat_icon} onClick = {!displayMessage? showMessage : hideMessage}></img>
+                                        <div className = "unread">2</div>
+                                    </div>
+
+                                    <div className = "notification_icon icon">
+                                        <img src = {notification_icon}></img>
+                                        <div className = "unread">2</div>
+                                    </div>
+
+                                    <div className = "gallery_icon icon">
+                                        <img src = {gallery_icon}></img>
+                                    </div>
+                                </div>
+                            }
+
+                            {/* <div className = "write_icon icon" onClick = {() => props.createPost()}>
                                 <img src = {write_icon}></img>
                             </div>
 
@@ -98,7 +153,7 @@ const Navbar = (props) => {
 
                             <div className = "gallery_icon icon">
                                 <img src = {gallery_icon}></img>
-                            </div>
+                            </div> */}
 
                             <div className = "profilepicture icon">
                                 <img src = {user.profilePicture}></img>

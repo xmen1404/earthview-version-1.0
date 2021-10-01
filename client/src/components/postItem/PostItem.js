@@ -34,7 +34,7 @@ const PostItem = (props) => {
 
     const {authState: {isAuthenticated}, redirectToLogin} = useContext(AuthContext);
     const {likePost, unlikePost, checkLike} = useContext(PostLikeContext);
-    const {controllerState: {displayPostComment, currentPost}, displayFullPost, hideFullPost, switchCurrentPost} = useContext(ControllerContext);
+    const {controllerState: {displayPostComment, currentPost, isOpenNavbar}, displayFullPost, hideFullPost, switchCurrentPost, closeNavbar, openNavbar} = useContext(ControllerContext);
 
     const myRef = useRef(null)
 
@@ -67,9 +67,11 @@ const PostItem = (props) => {
 
         if(currentPost !== ("post-"+props.data._id)){
             // setOpenFullPost(true);
+            closeNavbar();
             switchCurrentPost("post-"+props.data._id);
             // displayFullPost();
         }
+
 
         if(!openComment){
             // myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -81,7 +83,13 @@ const PostItem = (props) => {
             setOpenComment(true);
         }
         else{
-            setOpenComment(!openComment);
+            if(isOpenNavbar){
+                closeNavbar();
+                setOpenComment(true);
+            }
+            else{
+                setOpenComment(!openComment);
+            }
         }
 
         // setLoadOpenComment(true);
@@ -137,6 +145,8 @@ const PostItem = (props) => {
     }
 
     const switchOpenFullPost = () => {
+        closeNavbar();
+
         if(openComment){
             setOpenComment(false)
         }
@@ -161,6 +171,7 @@ const PostItem = (props) => {
         }
 
         switchCurrentPost("");
+        openNavbar()
     }
 
     const marginTransition = () => {
@@ -490,210 +501,6 @@ const PostItem = (props) => {
             </div>
         </div>
     );
-
-
-    // if(!openFullPost) {
-    //     var userProfilePostItemFlexBasis = {
-    //         background: `url(${props.data.backgroundUrl}) no-repeat center center/cover`,
-    //         flexBasis: "100%"
-    //     };
-    //     if(!props.openUserProfile) {
-    //         userProfilePostItemFlexBasis = {
-    //             background: `url(${props.data.backgroundUrl}) no-repeat center center/cover`
-    //         };
-    //     }
-
-    //     return (
-    //         <div className = "community-postitem">
-    //             {/* {author(props.data.createdAt, "black", true, props.openUserProfile ? 2 : 0)} */}
-    //             {!props.openUserProfile && 
-    //                 <div className="tools">
-    //                     <div className="love">
-    //                         <RoundButton 
-    //                             content = {currentlike}
-    //                             contentColor = "#000000"
-    //                             background = {isLike? redHeartIcon: heartIcon}
-    //                             radius = "2.5rem"
-    //                             backgroundColor = "#F5FFFFB2"
-    //                             handleClick = {likePostHandle}
-    //                         ></RoundButton>
-    //                     </div>
-    //                     <div className="comment">
-    //                         <RoundButton 
-    //                             content = {currentComment}
-    //                             contentColor = "#000000"
-    //                             background = {commentIcon}
-    //                             radius = "2.5rem"
-    //                             backgroundColor = "#F5FFFFB2"
-    //                             handleClick={outsideOpenCommentSection}
-    //                         ></RoundButton>
-    //                     </div>
-    //                     <div className="share">
-    //                         <RoundButton 
-    //                             content = "7"
-    //                             contentColor = "#000000"
-    //                             background = {shareIcon}
-    //                             radius = "2.5rem"
-    //                             backgroundColor = "#F5FFFFB2"
-    //                         ></RoundButton>
-    //                     </div>
-    //                 </div>
-    //             }
-    //             <div className = "postitem-content">
-    //                 {/* <div className="header">
-    //                 </div> */}
-    //                 {author(props.data.createdAt, "black", true, props.openUserProfile ? 2 : 0)}
-
-    //                 <div className="header">
-    //                     <h3>{props.data.title}</h3>
-    //                 </div>
-
-    //                 <div className="body-container"> 
-    //                     <div className="body" 
-    //                         style = {userProfilePostItemFlexBasis}>
-
-    //                         <div className="description">
-    //                             <div className="hastag">
-    //                                 #{props.data.category.name} {props.data.bigCategory.name}
-    //                             </div>
-
-    //                             <div className="text">
-    //                                 {props.data.description}
-    //                             </div>
-
-    //                             <div>
-    //                                 <Button 
-    //                                     content="Đọc tiếp"
-    //                                     color="white"
-    //                                     width="6rem"
-    //                                     height="1.7rem"
-    //                                     fontSize="15px"
-    //                                     margin = "3rem auto 0 auto"
-    //                                     border="1.2px solid white"
-    //                                     paddingTop="0.15rem"
-    //                                     paddingBottom="0.25rem"
-    //                                     fontWeight = "550"
-    //                                     handleClick={switchOpenFullPost}
-    //                                 />
-    //                             </div>
-    //                         </div>
-    //                         <div className="end-line"></div>
-    //                     </div>                        
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     );
-    // } else return (
-    //     <div className="outmost-container"
-    //         style = {{background: `url(${props.data.backgroundUrl}) no-repeat center center/cover`}}
-    //     >
-    //         <div className="background">   
-    //         </div>
-    //         <div className= {postContainerClass} id="post-container">
-    //             <div className="left-tools"></div>
-    //             <div className="post">
-    //                 <div className="post-content">
-    //                     <div className="header">
-    //                         <h3>{props.data.title}</h3>
-    //                     </div>
-    //                     <div className="author">
-    //                     {author(Math.ceil(props.data.content.trim().split(" ").length/3/60), "rgb(41, 94, 98)", false, 1)}
-    //                     </div>
-    //                     <div className="body">
-    //                         <div className="text" style = {{whiteSpace: "pre-wrap"}}>
-    //                             {props.data.content}
-    //                         </div>
-    //                         {/* <div className="author">
-    //                         {author("7 phút đọc", "rgb(41, 94, 98)")}
-    //                         </div>
-    //                         <div className="body">
-    //                             <div className="text" style = {{whiteSpace: "pre-wrap"}}>
-    //                                 {props.data.content}
-    //                             </div>
-    //                         </div> */}
-    //                         <div className="end-line"></div>
-    //                         <div className="end-author">
-    //                             <div className="postitem-user">
-    //                                 <div className = "profilePicture"><img src = {props.data.user.profilePicture} alt = "profile-picture"></img></div>
-    //                                 <div className = "user-name">{props.data.user.name}</div>
-    //                                 <div className = "follow">
-    //                                     <Button 
-    //                                         content="Follow"
-    //                                         color="rgb(66, 113, 117)"
-    //                                         width="4.5rem"
-    //                                         height="1rem"
-    //                                         fontSize="1rem"
-    //                                         margin = "0"
-    //                                         border="2px solid rgb(66, 113, 117)"
-    //                                         paddingTop="0.15rem"
-    //                                         paddingBottom="0.25rem"
-    //                                         fontWeight = "550"
-    //                                         // handleClick={props.showLoginPanel}
-    //                                     />
-    //                                 </div>
-    //                             </div>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //             <div className="right-tools">
-    //                 <div className="close-post">
-    //                     <RoundButton 
-    //                         content = "Thoát"
-    //                         contentColor = "rgba(255, 255, 255, 0.85)"
-    //                         background = {cross_icon}
-    //                         radius = "2.5rem"
-    //                         handleClick = {switchOpenFullPost}
-    //                         backgroundColor = "rgba(238, 238, 238, 0.8)"
-    //                     ></RoundButton>
-    //                 </div>
-    //                 <div className="save-post">
-    //                     <RoundButton 
-    //                         content = "Lưu bài"
-    //                         contentColor = "rgba(255, 255, 255, 0.85)"
-    //                         background = {bookmarkIcon}
-    //                         radius = "2.5rem"
-    //                         backgroundColor = "rgba(238, 238, 238, 0.8)"
-    //                     ></RoundButton>
-    //                 </div>
-    //                 <div className="love">
-    //                     <RoundButton 
-    //                         content = {currentlike}
-    //                         contentColor = "rgba(255, 255, 255, 0.85)"
-    //                         background = {isLike? redHeartIcon: heartIcon}
-    //                         radius = "2.5rem"
-    //                         backgroundColor = "rgba(238, 238, 238, 0.8)"
-    //                         handleClick = {likePostHandle}
-    //                     ></RoundButton>
-    //                 </div>
-    //                 <div className="comment">
-    //                     <RoundButton 
-    //                         content = {currentComment}
-    //                         contentColor = "rgba(255, 255, 255, 0.85)"
-    //                         background = {commentIcon}
-    //                         radius = "2.5rem"
-    //                         backgroundColor = "rgba(238, 238, 238, 0.8)"
-    //                         handleClick={marginTransition}
-    //                     ></RoundButton>
-    //                 </div>
-    //                 <div className="share">
-    //                     <RoundButton 
-    //                         content = "7"
-    //                         contentColor = "rgba(255, 255, 255, 0.85)"
-    //                         background = {shareIcon}
-    //                         radius = "2.5rem"
-    //                         backgroundColor = "rgba(238, 238, 238, 0.8)"
-    //                     ></RoundButton>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //         {openComment && 
-    //             <div id="commentSection">
-    //                 <CommentSection increaseCommentCount = {increaseCommentCount}  updateCommentCount = {updateCommentCount} postId = {props.data._id} />
-    //             </div>
-    //         }
-    //     </div>
-    // );
 }
 
 export default PostItem;
